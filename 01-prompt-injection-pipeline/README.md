@@ -1,6 +1,6 @@
 # LLM Prompt Injection Detection Pipeline
 
-[![CI](https://github.com/johnlorenthomas/ai-security-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/johnlorenthomas/ai-security-portfolio/actions/workflows/ci.yml)
+[![CI](https://github.com/johnlorenthomas14/ai-security-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/johnlorenthomas14/ai-security-portfolio/actions/workflows/ci.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![MITRE ATLAS](https://img.shields.io/badge/MITRE%20ATLAS-AML.T0051%20%7C%20AML.T0054-red.svg)](https://atlas.mitre.org/)

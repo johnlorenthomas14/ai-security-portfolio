@@ -7,13 +7,16 @@ on:
     branches: [main]
 
 jobs:
-  test:
-    name: pytest + heuristic eval
+  prompt-injection-pipeline:
+    name: Project 1 — pytest + heuristic eval
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         python-version: ["3.11", "3.12"]
+    defaults:
+      run:
+        working-directory: 01-prompt-injection-pipeline
 
     steps:
       - uses: actions/checkout@v4
@@ -23,6 +26,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           cache: pip
+          cache-dependency-path: 01-prompt-injection-pipeline/requirements.txt
 
       - name: Install dependencies
         run: |

@@ -1,0 +1,32 @@
+.env
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.coverage
+htmlcov/
+.DS_Store
+.idea/
+.vscode/
+*.egg-info/
+dist/
+build/
+
+# Personal documents — keep local, never push
+John_Thomas_*.docx
+John_Thomas_*.pdf
+PANW_SHOWCASE_STRATEGY.md
+_resume_build/
+_outreach/
+_interview_prep/
+_retro/
+
+# Cowork / preview artifacts
+*.tmp
+preview-*.jpg
+preview-*.png
+
+# LibreOffice / Word lock files
+.~lock.*
+~$*

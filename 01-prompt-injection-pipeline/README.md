@@ -35,8 +35,9 @@ cd 01-prompt-injection-pipeline
 ```
 
 Project 1 of [eight in the AI Security Portfolio](../README.md) — built by
-[John Thomas](https://www.linkedin.com/in/john-thomas-751578130) (Principal
-Splunk Consultant, 9 yrs federal SIEM, TS clearance).
+[John Thomas](https://www.linkedin.com/in/john-thomas-751578130), a Principal
+Splunk Consultant with 9+ years of federal-SIEM and detection-engineering
+experience.
 
 ## Threat model
 

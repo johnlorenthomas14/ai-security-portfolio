@@ -11,7 +11,6 @@ re-asking.
 - **Name:** John Thomas
 - **Location:** Fairfax, VA
 - **Email:** johnlorenthomas@gmail.com  •  **LinkedIn:** linkedin.com/in/john-thomas-751578130
-- **Clearances:** **TOP SECRET**, **IRS MBI**
 - **Current role:** Principal Technical Splunk Consultant / Principal Splunk Engineer at **Qmulos LLC** (Jul 2020 – present)
 - **Prior role:** Cybersecurity Analyst (Splunk) at Mission First Solutions (Dec 2016 – Jul 2020)
 - **Experience:** 9+ years building, operating, and tuning Splunk-based

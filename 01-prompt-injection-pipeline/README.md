@@ -23,10 +23,15 @@ F1 ≥ 0.85 floor as a regression guard.
 
 ## Demo
 
-A 60-second walkthrough lives in [`demo.sh`](./demo.sh). Record with:
+[![asciicast](https://asciinema.org/a/7D9hsPUdsK8lxpbj.svg)](https://asciinema.org/a/7D9hsPUdsK8lxpbj)
+
+60-second walkthrough — benign input, direct prompt-injection, jailbreak persona,
+tool-abuse pattern, the 30-row labeled eval (heuristic-only, F1 = 1.000), and
+the pytest suite. Click the cast above to play, or run it yourself:
 
 ```bash
-asciinema rec -c "./demo.sh" demo.cast
+cd 01-prompt-injection-pipeline
+./demo.sh
 ```
 
 Project 1 of [eight in the AI Security Portfolio](../README.md) — built by

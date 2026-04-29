@@ -39,6 +39,12 @@ Project 1 of [eight in the AI Security Portfolio](../README.md) — built by
 Splunk Consultant with 9+ years of federal-SIEM and detection-engineering
 experience.
 
+> **Engineering write-up:** [`WRITEUP.md`](./WRITEUP.md) — the why behind every
+> design choice in this project. Threat model, why hybrid heuristic + LLM,
+> rule-by-rule rationale, eval methodology and an honest disclosure on the
+> F1 = 1.000 number, Splunk ES integration, Cortex XSIAM mapping, and
+> roadmap. ~2,400 words, 8-minute read.
+
 ## Threat model
 
 | | |

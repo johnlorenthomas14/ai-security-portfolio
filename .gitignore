@@ -16,7 +16,8 @@ build/
 # Personal documents — keep local, never push
 John_Thomas_*.docx
 John_Thomas_*.pdf
-PANW_SHOWCASE_STRATEGY.md
+*_STRATEGY.md
+*_strategy.md
 _resume_build/
 _outreach/
 _interview_prep/

@@ -27,7 +27,7 @@ re-asking.
   (MLTK)** with Qmulos Q-Audit dashboards to train and operationalize models
   for anomalous-activity and security detection. This is the production
   analog of the hybrid heuristic / ML detection patterns repeated across the
-  portfolio — and the strongest PANW-side hook (Cortex XSIAM, Precision AI).
+  portfolio — translates directly into modern XDR / AI-native SIEM platforms.
   Reference it before the portfolio in cover letters and recruiter outreach.
 - **Certifications:** ISACA **CISM**; CompTIA Security+; Splunk Core
   Certified Consultant; Splunk Enterprise Certified Architect; Splunk SOAR
@@ -36,8 +36,9 @@ re-asking.
   Cribl Stream + Edge Admin.
 - **Education:** B.S. Economics, George Mason University; A.A.S. Business
   Admin, Northern Virginia Community College.
-- **Target role:** AI Security Engineer — primary focus **Palo Alto Networks**
-  (Cortex XSIAM, Precision AI, Unit 42, federal practice, Protect AI).
+- **Target role:** AI Security Engineer at a modern XDR / AI-native SIEM
+  vendor or cleared/federal-experienced security shop. Specific company
+  targets are tracked in the gitignored strategy doc, not here.
 - **Why this portfolio:** Translate proven detection-engineering, SOC-tooling,
   and federal-compliance skills into the AI/LLM security domain. Each project
   should produce something an AI Security Engineer hiring manager can read in

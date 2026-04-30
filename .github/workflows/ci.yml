@@ -38,3 +38,45 @@ jobs:
 
       - name: Run heuristic-only eval (must hit F1 >= 0.85)
         run: python run_eval.py
+
+  red-team-framework:
+    name: Project 2 — pytest + demo run
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    defaults:
+      run:
+        working-directory: 02-ai-red-team-framework
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: 02-ai-red-team-framework/requirements.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          # Project 2's scorer imports Project 1's detector, so we need
+          # Project 1's deps installed in the same environment.
+          pip install -r ../01-prompt-injection-pipeline/requirements.txt
+
+      - name: Run pytest (offline, no API key)
+        run: pytest -q
+
+      - name: Run framework end-to-end against the demo target
+        # The runner exits non-zero if any probe verdict is "fail" — and
+        # the demo target is *intentionally* vulnerable, so this run is
+        # *expected* to exit non-zero. Capture stdout but don't fail the
+        # build on it; the pytest step is the real gate.
+        run: |
+          python runner.py --target demo --output ./out --quiet || true
+          test -f ./out/findings.json
+          test -f ./out/airmf_evidence.md

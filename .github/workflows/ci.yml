@@ -80,3 +80,43 @@ jobs:
           python runner.py --target demo --output ./out --quiet || true
           test -f ./out/findings.json
           test -f ./out/airmf_evidence.md
+
+  rag-security-auditor:
+    name: Project 3 — pytest + demo corpus audit
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    defaults:
+      run:
+        working-directory: 03-rag-security-auditor
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: 03-rag-security-auditor/requirements.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          # The injection scanner imports Project 1's detector.
+          pip install -r ../01-prompt-injection-pipeline/requirements.txt
+
+      - name: Run pytest (offline, no API key)
+        run: pytest -q
+
+      - name: Audit the shipped demo corpus end-to-end
+        # The auditor exits non-zero on any critical/high finding — and
+        # the demo corpus is intentionally polluted, so this is expected
+        # to exit non-zero. pytest is the real gate.
+        run: |
+          python auditor.py --corpus corpus/demo --output ./out --quiet || true
+          test -f ./out/findings.json
+          test -f ./out/audit_report.md

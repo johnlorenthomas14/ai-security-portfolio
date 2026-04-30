@@ -31,3 +31,11 @@ preview-*.png
 # LibreOffice / Word lock files
 .~lock.*
 ~$*
+
+# Project 2 — runtime-generated red-team scan outputs.
+# The two example files committed in the initial MVP commit stay (they
+# serve as a public demo of what the framework produces); future
+# regenerations are gitignored to avoid commit noise.
+02-ai-red-team-framework/out/*
+!02-ai-red-team-framework/out/airmf_evidence.md
+!02-ai-red-team-framework/out/findings.json

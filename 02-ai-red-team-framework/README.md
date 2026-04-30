@@ -16,6 +16,12 @@
 (2025) categories, an in-process deliberately-vulnerable demo target, and a
 pytest suite that runs the framework end-to-end with no API key required.
 
+> **Engineering write-up:** [`WRITEUP.md`](./WRITEUP.md) — the why behind
+> every design decision in this framework. Threat model, scoring-layer
+> rationale, probe-schema trade-offs, calibration vs. operational signal,
+> Splunk HEC integration with batch / ack / Cribl-fronting detail, Cortex
+> XSIAM mapping, and roadmap. ~3,300 words, 12-minute read.
+
 ## Threat model
 
 | | |
@@ -144,6 +150,34 @@ index=aisec sourcetype="aisec:red_team" cim_eventtype="ai_red_team_finding" verd
 | eval severity=case(severity=="high","high","severity"=="medium","medium",1=1,"low")
 | `notable_event(ai_red_team_finding, severity, "Red-team probe found a control gap")`
 ```
+
+### Why HEC, and where you'd extend it for production
+
+HEC is the idiomatic ingestion path for this project's emission profile —
+scheduled runs producing a bounded set of synthesized events with no
+on-disk log file for a Universal Forwarder to tail. For low-volume
+scheduled scans this is optimal, not a compromise.
+
+For higher-volume or stricter-license deployments the path forward is:
+
+- **Batch the HEC POST.** Use the `/services/collector/event/batch`
+  endpoint to send all findings from one run in a single request rather
+  than per-event POSTs — amortizes TLS handshake cost and indexer parse
+  overhead across the full run.
+- **HEC ack mode.** Enable HEC acknowledgements so the framework retries
+  on transient indexer errors instead of silently dropping findings.
+- **Cribl Stream in front of HEC.** When license / SVC consumption is the
+  binding constraint (typical on federal Splunk Cloud engagements),
+  ingest into Cribl first, drop verdict-pass findings at the edge, and
+  forward only warnings and fails to Splunk. This is the standard
+  pattern for compliance-evidence streams that produce a lot of
+  pass/no-finding noise.
+
+Universal Forwarder is the wrong fit here — the data isn't on disk, the
+host is typically serverless or ephemeral, and you'd be inventing
+agent-management complexity to solve a non-problem. UF wins above
+~10k events/sec sustained or where files already exist; this framework
+is neither.
 
 ## What's not in MVP (roadmap)
 

@@ -16,6 +16,14 @@
 documents (several intentionally polluted), pytest end-to-end coverage,
 and a CI job that runs the full audit on every push.
 
+> **Engineering write-up:** [`WRITEUP.md`](./WRITEUP.md) — the why
+> behind every design decision. Why static corpus scanning vs. live
+> RAG probing, why these four scanner classes, the false-positive
+> trade-offs (regex vs. NER for PII, redaction-in-report for secrets),
+> Splunk integration with batch / ack / Cribl detail, and how the
+> three-project chain produces continuous-monitoring evidence across
+> all four NIST AI RMF functions. ~3,300 words, 12-minute read.
+
 ## Threat model
 
 | | |

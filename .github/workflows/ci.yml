@@ -198,3 +198,44 @@ jobs:
 
       - name: Verify the hash-chained audit log's integrity
         run: python monitor.py --verify ./out/audit.jsonl
+
+  model-supply-chain-scanner:
+    name: Project 6 — pytest + scan demo model + emit SBOM
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    defaults:
+      run:
+        working-directory: 06-model-supply-chain-scanner
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: 06-model-supply-chain-scanner/requirements.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run pytest (offline, no API key)
+        run: pytest -q
+
+      - name: Scan the shipped demo model end-to-end
+        # Scanner exits non-zero on critical/high findings — demo model is
+        # designed to surface a high-severity 'requests' dep finding by
+        # default, so non-zero is expected. pytest is the real gate.
+        run: |
+          python scanner.py --model samples/demo_model --output ./out --quiet || true
+          test -f ./out/findings.json
+          test -f ./out/audit_report.md
+          test -f ./out/sbom.cdx.json
+          # Validate the SBOM is well-formed CycloneDX 1.5.
+          python -c "import json; d=json.load(open('./out/sbom.cdx.json')); assert d['specVersion']=='1.5' and d['bomFormat']=='CycloneDX'"

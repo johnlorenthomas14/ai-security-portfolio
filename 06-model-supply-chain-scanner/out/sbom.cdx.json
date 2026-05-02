@@ -1,0 +1,85 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "serialNumber": "urn:uuid:63c782f0-694b-49ad-9760-e66aba52babc",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-05-02T19:37:23.005233+00:00",
+    "tools": [
+      {
+        "vendor": "AI Security Portfolio",
+        "name": "ai-security-portfolio:model-supply-chain-scanner",
+        "version": "0.1.0"
+      }
+    ],
+    "component": {
+      "bom-ref": "model:demo_model",
+      "type": "machine-learning-model",
+      "name": "demo_model",
+      "version": "unknown",
+      "description": "Model artifact under supply-chain inspection."
+    }
+  },
+  "components": [
+    {
+      "bom-ref": "file:LICENSE",
+      "type": "file",
+      "name": "LICENSE",
+      "mime-type": "application/octet-stream",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "e40c941b55caf1bee21ad21ba63decdcf69b2dcb4b90e3fc0f1f1e12861a262f"
+        }
+      ]
+    },
+    {
+      "bom-ref": "file:README.md",
+      "type": "file",
+      "name": "README.md",
+      "mime-type": "application/octet-stream",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "480626ccf9f1a58d3d0dd78541fbbb09c540ed7261e26d6790423190891d68d4"
+        }
+      ]
+    },
+    {
+      "bom-ref": "file:config.json",
+      "type": "file",
+      "name": "config.json",
+      "mime-type": "application/json",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "18ca74d41303c9975bcf4d5138695d811d596c6c7631b015a8775de922cbf9aa"
+        }
+      ]
+    },
+    {
+      "bom-ref": "file:pytorch_model.bin",
+      "type": "file",
+      "name": "pytorch_model.bin",
+      "mime-type": "application/octet-stream",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "fe06906ce2edb77624f0a1728f0e31734868f47d0bfa87576277c1094cc6ad02"
+        }
+      ]
+    },
+    {
+      "bom-ref": "file:requirements.txt",
+      "type": "file",
+      "name": "requirements.txt",
+      "mime-type": "text/plain",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "3e7569f9ce8e8247a179b78da0531e3de5a04080d173bc37ddd355360c9580e3"
+        }
+      ]
+    }
+  ]
+}

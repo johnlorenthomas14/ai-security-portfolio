@@ -1,0 +1,5 @@
+# Demo requirements file — intentionally includes one risky dependency
+# so the scanner has something to flag during the demo.
+numpy>=1.24
+torch>=2.0
+requests>=2.31

@@ -1,0 +1,66 @@
+{
+  "run": {
+    "run_time": "2026-05-02T19:37:23.001086+00:00",
+    "model_root": "/Users/johnthomas/Documents/Claude/ai-security-portfolio/06-model-supply-chain-scanner/samples/demo_model",
+    "summary": {
+      "n_files_scanned": 5,
+      "n_findings": 2,
+      "by_severity": {
+        "critical": 0,
+        "high": 1,
+        "medium": 0,
+        "low": 1
+      },
+      "by_category": {
+        "missing_provenance": 1,
+        "risky_dependency": 1
+      },
+      "by_scanner": {
+        "provenance_scanner": 1,
+        "dependencies_scanner": 1
+      }
+    }
+  },
+  "findings": [
+    {
+      "finding_id": "MS-PRV-missing_manifest",
+      "artifact_path": "<directory>",
+      "scanner": "provenance_scanner",
+      "category": "missing_provenance",
+      "severity": "low",
+      "title": "Model directory has no integrity manifest",
+      "rationale": "No manifest.json / SHA256SUMS / checksums.json found. Without a signed manifest, individual weight-file integrity cannot be verified independently of the directory's transport mechanism. Generated SBOM (sbom.cdx.json) provides this artifact going forward.",
+      "matched_evidence": "",
+      "line_number": null,
+      "owasp_category": "LLM03",
+      "atlas_techniques": [
+        "AML.T0010"
+      ],
+      "airmf_subcategory": "MAP 4.1",
+      "cim_eventtype": "ai_model_supply_chain_finding",
+      "signature": "model_supply_chain_scanner",
+      "event_severity": "low",
+      "event_time": "2026-05-02T19:37:23.001313+00:00"
+    },
+    {
+      "finding_id": "MS-DEP-risky_requests-requirements.txt",
+      "artifact_path": "requirements.txt",
+      "scanner": "dependencies_scanner",
+      "category": "risky_dependency",
+      "severity": "high",
+      "title": "Risky dependency declared \u2014 requests",
+      "rationale": "Model distribution declares 'requests' as a dependency: outbound HTTP capability inside model load path. Inference-only models rarely need this category of dependency; verify it's required for the loader path before approving for deployment.",
+      "matched_evidence": "requests>=2.31",
+      "line_number": 5,
+      "owasp_category": "LLM03",
+      "atlas_techniques": [
+        "AML.T0010"
+      ],
+      "airmf_subcategory": "MAP 4.1",
+      "cim_eventtype": "ai_model_supply_chain_finding",
+      "signature": "model_supply_chain_scanner",
+      "event_severity": "high",
+      "event_time": "2026-05-02T19:37:23.001343+00:00"
+    }
+  ]
+}

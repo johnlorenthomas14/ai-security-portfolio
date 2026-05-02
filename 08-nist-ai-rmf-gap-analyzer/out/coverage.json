@@ -1,0 +1,849 @@
+{
+  "run": {
+    "run_time": "2026-05-02T20:12:25.644531+00:00",
+    "total_subcategories": 35,
+    "total_covered": 11,
+    "overall_pct": 0.3143
+  },
+  "function_coverage": [
+    {
+      "function": "GOVERN",
+      "n_subcategories": 9,
+      "n_covered": 2,
+      "coverage_pct": 0.2222
+    },
+    {
+      "function": "MAP",
+      "n_subcategories": 6,
+      "n_covered": 1,
+      "coverage_pct": 0.1667
+    },
+    {
+      "function": "MEASURE",
+      "n_subcategories": 10,
+      "n_covered": 4,
+      "coverage_pct": 0.4
+    },
+    {
+      "function": "MANAGE",
+      "n_subcategories": 10,
+      "n_covered": 4,
+      "coverage_pct": 0.4
+    }
+  ],
+  "subcategories": [
+    {
+      "id": "GOVERN 1.1",
+      "function": "GOVERN",
+      "name": "Legal and regulatory requirements understood",
+      "description": "Legal and regulatory requirements involving AI are understood, managed, and documented across the AI lifecycle.",
+      "priority": "high",
+      "covered": false,
+      "n_evidence_items": 0,
+      "total_findings": 0,
+      "contributing_projects": [],
+      "evidence": []
+    },
+    {
+      "id": "GOVERN 1.2",
+      "function": "GOVERN",
+      "name": "Trustworthy AI characteristics integrated",
+      "description": "The characteristics of trustworthy AI are integrated into organizational policies, processes, procedures, and practices.",
+      "priority": "medium",
+      "covered": false,
+      "n_evidence_items": 0,
+      "total_findings": 0,
+      "contributing_projects": [],
+      "evidence": []
+    },
+    {
+      "id": "GOVERN 1.3",
+      "function": "GOVERN",
+      "name": "Risk processes calibrated to organizational impact",
+      "description": "Processes, procedures, and practices are in place to determine the needed level of risk management activities based on AI system impact level.",
+      "priority": "high",
+      "covered": true,
+      "n_evidence_items": 3,
+      "total_findings": 5,
+      "contributing_projects": [
+        "03-rag-security-auditor",
+        "04-siem-correlation-generator",
+        "05-llm-output-compliance-monitor"
+      ],
+      "evidence": [
+        {
+          "subcategory_id": "GOVERN 1.3",
+          "project": "03-rag-security-auditor",
+          "source": "03-rag-security-auditor/out/findings.json",
+          "description": "2 finding(s) tagged GOVERN 1.3 from 03-rag-security-auditor",
+          "finding_count": 2,
+          "severity": "critical"
+        },
+        {
+          "subcategory_id": "GOVERN 1.3",
+          "project": "04-siem-correlation-generator",
+          "source": "04-siem-correlation-generator/templates",
+          "description": "1 canonical rule template(s) tagged GOVERN 1.3 \u2014 deployable correlation content for the subcategory",
+          "finding_count": 1,
+          "severity": "informational"
+        },
+        {
+          "subcategory_id": "GOVERN 1.3",
+          "project": "05-llm-output-compliance-monitor",
+          "source": "05-llm-output-compliance-monitor/out/audit.jsonl",
+          "description": "2 finding(s) tagged GOVERN 1.3 from 05-llm-output-compliance-monitor",
+          "finding_count": 2,
+          "severity": "high"
+        }
+      ]
+    },
+    {
+      "id": "GOVERN 1.4",
+      "function": "GOVERN",
+      "name": "Risk management process documented",
+      "description": "The risk management process and outcomes are established with transparent policies, procedures, and roles and responsibilities.",
+      "priority": "medium",
+      "covered": false,
+      "n_evidence_items": 0,
+      "total_findings": 0,
+      "contributing_projects": [],
+      "evidence": []
+    },
+    {
+      "id": "GOVERN 1.5",
+      "function": "GOVERN",
+      "name": "Continuous monitoring policy",
+      "description": "Ongoing monitoring and periodic review of the AI risk management process and its outcomes is planned.",
+      "priority": "high",
+      "covered": true,
+      "n_evidence_items": 2,
+      "total_findings": 20,
+      "contributing_projects": [
+        "01-prompt-injection-pipeline",
+        "05-llm-output-compliance-monitor"
+      ],
+      "evidence": [
+        {
+          "subcategory_id": "GOVERN 1.5",
+          "project": "01-prompt-injection-pipeline",
+          "source": "01-prompt-injection-pipeline",
+          "description": "Continuous monitoring policy: every push runs the eval and pytest suite; regressions break the build",
+          "finding_count": 1,
+          "severity": "informational"
+        },
+        {
+          "subcategory_id": "GOVERN 1.5",
+          "project": "05-llm-output-compliance-monitor",
+          "source": "05-llm-output-compliance-monitor/out/audit.jsonl",
+          "description": "19 hash-chained audit entries \u2014 continuous monitoring evidence",
+          "finding_count": 19,
+          "severity": "informational"
+        }
+      ]
+    },
+    {
+      "id": "GOVERN 1.7",
+      "function": "GOVERN",
+      "name": "AI deactivation processes",
+      "description": "Processes are in place for end-of-life decommissioning, rollback, or other deactivation of AI systems.",
+      "priority": "low",
+      "covered": false,
+      "n_evidence_items": 0,
+      "total_findings": 0,
+      "contributing_projects": [],
+      "evidence": []
+    },
+    {
+      "id": "GOVERN 4.1",
+      "function": "GOVERN",
+      "name": "AI risk responsibilities documented",
+      "description": "Organizational policies and practices are in place to foster a culture of risk awareness across the AI lifecycle.",
+      "priority": "medium",
+      "covered": false,
+      "n_evidence_items": 0,
+      "total_findings": 0,
+      "contributing_projects": [],
+      "evidence": []
+    },
+    {
+      "id": "GOVERN 5.1",
+      "function": "GOVERN",
+      "name": "Stakeholder engagement processes",
+      "description": "Organizational policies and practices are in place to collect, consider, prioritize, and integrate feedback from those affected by AI systems.",
+      "priority": "low",
+      "covered": false,
+      "n_evidence_items": 0,
+      "total_findings": 0,
+      "contributing_projects": [],
+      "evidence": []
+    },
+    {
+      "id": "GOVERN 6.1",
+      "function": "GOVERN",
+      "name": "Third-party AI risks managed",
+      "description": "Policies and procedures are in place to address risks associated with third-party software and data.",
+      "priority": "high",
+      "covered": false,
+      "n_evidence_items": 0,
+      "total_findings": 0,
+      "contributing_projects": [],
+      "evidence": []
+    },
+    {
+      "id": "MANAGE 1.1",
+      "function": "MANAGE",
+      "name": "High-priority risks managed first",
+      "description": "A determination is made as to whether the AI system achieves its intended purposes and stated objectives and whether its development or deployment should proceed.",
+      "priority": "medium",
+      "covered": false,
+      "n_evidence_items": 0,
+      "total_findings": 0,
+      "contributing_projects": [],
+      "evidence": []
+    },
+    {
+      "id": "MANAGE 1.2",
+      "function": "MANAGE",
+      "name": "Treatment of documented AI risks",
+      "description": "Treatment of documented AI risks is prioritized based on impact, likelihood, and available resources or methods.",
+      "priority": "high",
+      "covered": false,
+      "n_evidence_items": 0,
+      "total_findings": 0,
+      "contributing_projects": [],
+      "evidence": []
+    },
+    {
+      "id": "MANAGE 1.3",
+      "function": "MANAGE",
+      "name": "Responses to risks selected",
+      "description": "Responses to the AI risks deemed high priority \u2014 as identified by the MAP function \u2014 including mitigation, transfer, avoidance, and acceptance are developed, planned for, and documented.",
+      "priority": "high",
+      "covered": false,
+      "n_evidence_items": 0,
+      "total_findings": 0,
+      "contributing_projects": [],
+      "evidence": []
+    },
+    {
+      "id": "MANAGE 2.1",
+      "function": "MANAGE",
+      "name": "Resources allocated to manage AI risks",
+      "description": "Resources required to manage AI risks are taken into account, along with viable non-AI alternative systems, approaches, or methods to reduce the magnitude or likelihood of potential impacts.",
+      "priority": "low",
+      "covered": false,
+      "n_evidence_items": 0,
+      "total_findings": 0,
+      "contributing_projects": [],
+      "evidence": []
+    },
+    {
+      "id": "MANAGE 2.3",
+      "function": "MANAGE",
+      "name": "Mechanisms to override or disengage",
+      "description": "Procedures are followed to respond to and recover from a previously unknown risk when it is identified.",
+      "priority": "high",
+      "covered": true,
+      "n_evidence_items": 2,
+      "total_findings": 4,
+      "contributing_projects": [
+        "02-ai-red-team-framework",
+        "04-siem-correlation-generator"
+      ],
+      "evidence": [
+        {
+          "subcategory_id": "MANAGE 2.3",
+          "project": "02-ai-red-team-framework",
+          "source": "02-ai-red-team-framework/out/findings.json",
+          "description": "3 finding(s) tagged MANAGE 2.3 from 02-ai-red-team-framework",
+          "finding_count": 3,
+          "severity": "high"
+        },
+        {
+          "subcategory_id": "MANAGE 2.3",
+          "project": "04-siem-correlation-generator",
+          "source": "04-siem-correlation-generator/templates",
+          "description": "1 canonical rule template(s) tagged MANAGE 2.3 \u2014 deployable correlation content for the subcategory",
+          "finding_count": 1,
+          "severity": "informational"
+        }
+      ]
+    },
+    {
+      "id": "MANAGE 2.4",
+      "function": "MANAGE",
+      "name": "Mechanisms for users to provide feedback",
+      "description": "Mechanisms are in place and applied, and responsibilities are assigned and understood, to supersede, disengage, or deactivate AI systems that demonstrate performance or outcomes inconsistent with intended use.",
+      "priority": "medium",
+      "covered": false,
+      "n_evidence_items": 0,
+      "total_findings": 0,
+      "contributing_projects": [],
+      "evidence": []
+    },
+    {
+      "id": "MANAGE 3.1",
+      "function": "MANAGE",
+      "name": "Risk monitored over time",
+      "description": "AI risks and benefits from third-party resources are regularly monitored and risk controls are applied and documented.",
+      "priority": "high",
+      "covered": true,
+      "n_evidence_items": 1,
+      "total_findings": 5,
+      "contributing_projects": [
+        "07-threat-intel-summarizer"
+      ],
+      "evidence": [
+        {
+          "subcategory_id": "MANAGE 3.1",
+          "project": "07-threat-intel-summarizer",
+          "source": "07-threat-intel-summarizer/out/notables",
+          "description": "5 threat-intel indicators emitted as Splunk notables \u2014 third-party risk monitored over time",
+          "finding_count": 5,
+          "severity": "informational"
+        }
+      ]
+    },
+    {
+      "id": "MANAGE 4.1",
+      "function": "MANAGE",
+      "name": "Post-deployment monitoring planned",
+      "description": "Post-deployment AI system monitoring plans are implemented, including mechanisms for capturing and evaluating input from users and other relevant AI actors.",
+      "priority": "high",
+      "covered": true,
+      "n_evidence_items": 1,
+      "total_findings": 8,
+      "contributing_projects": [
+        "04-siem-correlation-generator"
+      ],
+      "evidence": [
+        {
+          "subcategory_id": "MANAGE 4.1",
+          "project": "04-siem-correlation-generator",
+          "source": "04-siem-correlation-generator/templates",
+          "description": "8 rule templates published as deployable Splunk ES / Sigma / Cortex XSIAM correlation content \u2014 post-deployment monitoring plans implemented",
+          "finding_count": 8,
+          "severity": "informational"
+        }
+      ]
+    },
+    {
+      "id": "MANAGE 4.2",
+      "function": "MANAGE",
+      "name": "Mechanisms for analyzing measurement",
+      "description": "Measurable activities for continual improvements are integrated into AI system updates and include regular engagement with interested parties, including relevant AI actors.",
+      "priority": "medium",
+      "covered": false,
+      "n_evidence_items": 0,
+      "total_findings": 0,
+      "contributing_projects": [],
+      "evidence": []
+    },
+    {
+      "id": "MANAGE 4.3",
+      "function": "MANAGE",
+      "name": "Incidents documented",
+      "description": "Incidents and errors are communicated to relevant AI actors including affected communities. Processes for tracking, responding to, and recovering from incidents and errors are followed and documented.",
+      "priority": "medium",
+      "covered": true,
+      "n_evidence_items": 1,
+      "total_findings": 19,
+      "contributing_projects": [
+        "05-llm-output-compliance-monitor"
+      ],
+      "evidence": [
+        {
+          "subcategory_id": "MANAGE 4.3",
+          "project": "05-llm-output-compliance-monitor",
+          "source": "05-llm-output-compliance-monitor/out/audit.jsonl",
+          "description": "19 audit entries documenting compliance-monitor decisions",
+          "finding_count": 19,
+          "severity": "informational"
+        }
+      ]
+    },
+    {
+      "id": "MAP 1.1",
+      "function": "MAP",
+      "name": "System purpose and context defined",
+      "description": "Intended purpose, context of use, prospective settings, and specific tasks of the AI system are understood and documented.",
+      "priority": "medium",
+      "covered": false,
+      "n_evidence_items": 0,
+      "total_findings": 0,
+      "contributing_projects": [],
+      "evidence": []
+    },
+    {
+      "id": "MAP 1.2",
+      "function": "MAP",
+      "name": "Interdisciplinary AI actors engaged",
+      "description": "Interdisciplinary AI actors, competencies, skills, and capacities are inventoried, and capability gaps are identified.",
+      "priority": "low",
+      "covered": false,
+      "n_evidence_items": 0,
+      "total_findings": 0,
+      "contributing_projects": [],
+      "evidence": []
+    },
+    {
+      "id": "MAP 2.1",
+      "function": "MAP",
+      "name": "System tasks and methods documented",
+      "description": "Specific tasks and methods used to implement the tasks the AI system supports are documented.",
+      "priority": "medium",
+      "covered": false,
+      "n_evidence_items": 0,
+      "total_findings": 0,
+      "contributing_projects": [],
+      "evidence": []
+    },
+    {
+      "id": "MAP 4.1",
+      "function": "MAP",
+      "name": "Third-party risks documented",
+      "description": "Approaches for mapping AI technology and legal risks of its components \u2014 including third-party AI technologies \u2014 are documented.",
+      "priority": "high",
+      "covered": true,
+      "n_evidence_items": 2,
+      "total_findings": 4,
+      "contributing_projects": [
+        "06-model-supply-chain-scanner",
+        "07-threat-intel-summarizer"
+      ],
+      "evidence": [
+        {
+          "subcategory_id": "MAP 4.1",
+          "project": "06-model-supply-chain-scanner",
+          "source": "06-model-supply-chain-scanner/out/findings.json",
+          "description": "2 finding(s) tagged MAP 4.1 from 06-model-supply-chain-scanner",
+          "finding_count": 2,
+          "severity": "high"
+        },
+        {
+          "subcategory_id": "MAP 4.1",
+          "project": "07-threat-intel-summarizer",
+          "source": "07-threat-intel-summarizer/out/citation_audit.json",
+          "description": "Third-party threat-intel feeds mapped to indicators with explicit STIX provenance \u2014 third-party AI risks documented",
+          "finding_count": 2,
+          "severity": "informational"
+        }
+      ]
+    },
+    {
+      "id": "MAP 4.2",
+      "function": "MAP",
+      "name": "Internal risk controls documented",
+      "description": "Internal risk controls for AI components are identified and documented.",
+      "priority": "medium",
+      "covered": false,
+      "n_evidence_items": 0,
+      "total_findings": 0,
+      "contributing_projects": [],
+      "evidence": []
+    },
+    {
+      "id": "MAP 5.1",
+      "function": "MAP",
+      "name": "Likelihood and magnitude of impacts",
+      "description": "Likelihood and magnitude of each identified impact (both potentially beneficial and harmful) based on expected use, past uses of similar systems, public incident reports, feedback, and input from AI actors are identified and documented.",
+      "priority": "medium",
+      "covered": false,
+      "n_evidence_items": 0,
+      "total_findings": 0,
+      "contributing_projects": [],
+      "evidence": []
+    },
+    {
+      "id": "MEASURE 1.1",
+      "function": "MEASURE",
+      "name": "Risk measurement approaches identified",
+      "description": "Approaches and metrics for measurement of identified AI risks are selected for implementation, starting with the most significant risks.",
+      "priority": "high",
+      "covered": true,
+      "n_evidence_items": 1,
+      "total_findings": 1,
+      "contributing_projects": [
+        "01-prompt-injection-pipeline"
+      ],
+      "evidence": [
+        {
+          "subcategory_id": "MEASURE 1.1",
+          "project": "01-prompt-injection-pipeline",
+          "source": "01-prompt-injection-pipeline/eval_set.jsonl",
+          "description": "Detection eval methodology with explicit F1 threshold \u2014 risk measurement approach selected and implemented",
+          "finding_count": 1,
+          "severity": "informational"
+        }
+      ]
+    },
+    {
+      "id": "MEASURE 2.10",
+      "function": "MEASURE",
+      "name": "Privacy risk evaluated",
+      "description": "Privacy risk of the AI system \u2014 as identified in the MAP function \u2014 is examined and documented.",
+      "priority": "high",
+      "covered": true,
+      "n_evidence_items": 4,
+      "total_findings": 27,
+      "contributing_projects": [
+        "02-ai-red-team-framework",
+        "03-rag-security-auditor",
+        "04-siem-correlation-generator",
+        "05-llm-output-compliance-monitor"
+      ],
+      "evidence": [
+        {
+          "subcategory_id": "MEASURE 2.10",
+          "project": "02-ai-red-team-framework",
+          "source": "02-ai-red-team-framework/out/findings.json",
+          "description": "3 finding(s) tagged MEASURE 2.10 from 02-ai-red-team-framework",
+          "finding_count": 3,
+          "severity": "high"
+        },
+        {
+          "subcategory_id": "MEASURE 2.10",
+          "project": "03-rag-security-auditor",
+          "source": "03-rag-security-auditor/out/findings.json",
+          "description": "15 finding(s) tagged MEASURE 2.10 from 03-rag-security-auditor",
+          "finding_count": 15,
+          "severity": "critical"
+        },
+        {
+          "subcategory_id": "MEASURE 2.10",
+          "project": "04-siem-correlation-generator",
+          "source": "04-siem-correlation-generator/templates",
+          "description": "1 canonical rule template(s) tagged MEASURE 2.10 \u2014 deployable correlation content for the subcategory",
+          "finding_count": 1,
+          "severity": "informational"
+        },
+        {
+          "subcategory_id": "MEASURE 2.10",
+          "project": "05-llm-output-compliance-monitor",
+          "source": "05-llm-output-compliance-monitor/out/audit.jsonl",
+          "description": "8 finding(s) tagged MEASURE 2.10 from 05-llm-output-compliance-monitor",
+          "finding_count": 8,
+          "severity": "critical"
+        }
+      ]
+    },
+    {
+      "id": "MEASURE 2.11",
+      "function": "MEASURE",
+      "name": "Fairness and bias evaluated",
+      "description": "Fairness and bias \u2014 as identified in the MAP function \u2014 are evaluated and results are documented.",
+      "priority": "medium",
+      "covered": false,
+      "n_evidence_items": 0,
+      "total_findings": 0,
+      "contributing_projects": [],
+      "evidence": []
+    },
+    {
+      "id": "MEASURE 2.12",
+      "function": "MEASURE",
+      "name": "Environmental impact assessed",
+      "description": "Environmental impact and sustainability of AI model training and management activities \u2014 as identified in the MAP function \u2014 are assessed and documented.",
+      "priority": "low",
+      "covered": false,
+      "n_evidence_items": 0,
+      "total_findings": 0,
+      "contributing_projects": [],
+      "evidence": []
+    },
+    {
+      "id": "MEASURE 2.6",
+      "function": "MEASURE",
+      "name": "Computational and physical safety",
+      "description": "AI system is evaluated regularly for safety risks \u2014 as identified in the MAP function. The AI system to be deployed is demonstrated to be safe, its residual negative risk does not exceed risk tolerance, and it can fail safely.",
+      "priority": "high",
+      "covered": true,
+      "n_evidence_items": 3,
+      "total_findings": 10,
+      "contributing_projects": [
+        "02-ai-red-team-framework",
+        "04-siem-correlation-generator",
+        "05-llm-output-compliance-monitor"
+      ],
+      "evidence": [
+        {
+          "subcategory_id": "MEASURE 2.6",
+          "project": "02-ai-red-team-framework",
+          "source": "02-ai-red-team-framework/out/findings.json",
+          "description": "5 finding(s) tagged MEASURE 2.6 from 02-ai-red-team-framework",
+          "finding_count": 5,
+          "severity": "high"
+        },
+        {
+          "subcategory_id": "MEASURE 2.6",
+          "project": "04-siem-correlation-generator",
+          "source": "04-siem-correlation-generator/templates",
+          "description": "1 canonical rule template(s) tagged MEASURE 2.6 \u2014 deployable correlation content for the subcategory",
+          "finding_count": 1,
+          "severity": "informational"
+        },
+        {
+          "subcategory_id": "MEASURE 2.6",
+          "project": "05-llm-output-compliance-monitor",
+          "source": "05-llm-output-compliance-monitor/out/audit.jsonl",
+          "description": "4 finding(s) tagged MEASURE 2.6 from 05-llm-output-compliance-monitor",
+          "finding_count": 4,
+          "severity": "critical"
+        }
+      ]
+    },
+    {
+      "id": "MEASURE 2.7",
+      "function": "MEASURE",
+      "name": "Security and resilience evaluated",
+      "description": "AI system security and resilience \u2014 as identified in the MAP function \u2014 are evaluated and documented.",
+      "priority": "high",
+      "covered": true,
+      "n_evidence_items": 5,
+      "total_findings": 47,
+      "contributing_projects": [
+        "01-prompt-injection-pipeline",
+        "02-ai-red-team-framework",
+        "03-rag-security-auditor",
+        "04-siem-correlation-generator",
+        "07-threat-intel-summarizer"
+      ],
+      "evidence": [
+        {
+          "subcategory_id": "MEASURE 2.7",
+          "project": "01-prompt-injection-pipeline",
+          "source": "01-prompt-injection-pipeline/eval_set.jsonl",
+          "description": "Labeled eval set (30 samples) with CI-enforced F1 \u2265 0.85 regression floor \u2014 measurable security evaluation",
+          "finding_count": 30,
+          "severity": "informational"
+        },
+        {
+          "subcategory_id": "MEASURE 2.7",
+          "project": "02-ai-red-team-framework",
+          "source": "02-ai-red-team-framework/out/findings.json",
+          "description": "9 finding(s) tagged MEASURE 2.7 from 02-ai-red-team-framework",
+          "finding_count": 9,
+          "severity": "high"
+        },
+        {
+          "subcategory_id": "MEASURE 2.7",
+          "project": "03-rag-security-auditor",
+          "source": "03-rag-security-auditor/out/findings.json",
+          "description": "2 finding(s) tagged MEASURE 2.7 from 03-rag-security-auditor",
+          "finding_count": 2,
+          "severity": "high"
+        },
+        {
+          "subcategory_id": "MEASURE 2.7",
+          "project": "04-siem-correlation-generator",
+          "source": "04-siem-correlation-generator/templates",
+          "description": "4 canonical rule template(s) tagged MEASURE 2.7 \u2014 deployable correlation content for the subcategory",
+          "finding_count": 4,
+          "severity": "informational"
+        },
+        {
+          "subcategory_id": "MEASURE 2.7",
+          "project": "07-threat-intel-summarizer",
+          "source": "07-threat-intel-summarizer/out/citation_audit.json",
+          "description": "2 STIX bundle(s) summarized with citation verification; 0 hallucination(s) detected \u2014 LLM output measured against source ground truth",
+          "finding_count": 2,
+          "severity": "informational"
+        }
+      ]
+    },
+    {
+      "id": "MEASURE 2.8",
+      "function": "MEASURE",
+      "name": "Risks of inferred sensitive data",
+      "description": "Risks associated with transparency and accountability \u2014 as identified in the MAP function \u2014 are examined and documented.",
+      "priority": "medium",
+      "covered": false,
+      "n_evidence_items": 0,
+      "total_findings": 0,
+      "contributing_projects": [],
+      "evidence": []
+    },
+    {
+      "id": "MEASURE 3.1",
+      "function": "MEASURE",
+      "name": "Approaches for tracking risks",
+      "description": "Approaches, personnel, and documentation are in place to regularly identify and track existing, unanticipated, and emergent AI risks based on factors such as intended and actual performance in deployed contexts.",
+      "priority": "high",
+      "covered": false,
+      "n_evidence_items": 0,
+      "total_findings": 0,
+      "contributing_projects": [],
+      "evidence": []
+    },
+    {
+      "id": "MEASURE 4.1",
+      "function": "MEASURE",
+      "name": "Measurement processes effective",
+      "description": "Measurement approaches for identifying AI risks are connected to deployment context(s) and informed through consultation with domain experts and other end users.",
+      "priority": "medium",
+      "covered": false,
+      "n_evidence_items": 0,
+      "total_findings": 0,
+      "contributing_projects": [],
+      "evidence": []
+    },
+    {
+      "id": "MEASURE 4.2",
+      "function": "MEASURE",
+      "name": "Measurement results communicated",
+      "description": "Measurement results regarding AI system trustworthiness in deployment context(s) and across the AI lifecycle are informed by input from domain experts and relevant AI actors to validate whether the system is performing consistently as intended.",
+      "priority": "medium",
+      "covered": false,
+      "n_evidence_items": 0,
+      "total_findings": 0,
+      "contributing_projects": [],
+      "evidence": []
+    }
+  ],
+  "gaps": [
+    {
+      "id": "GOVERN 1.1",
+      "function": "GOVERN",
+      "name": "Legal and regulatory requirements understood",
+      "priority": "high"
+    },
+    {
+      "id": "GOVERN 6.1",
+      "function": "GOVERN",
+      "name": "Third-party AI risks managed",
+      "priority": "high"
+    },
+    {
+      "id": "MANAGE 1.2",
+      "function": "MANAGE",
+      "name": "Treatment of documented AI risks",
+      "priority": "high"
+    },
+    {
+      "id": "MANAGE 1.3",
+      "function": "MANAGE",
+      "name": "Responses to risks selected",
+      "priority": "high"
+    },
+    {
+      "id": "MEASURE 3.1",
+      "function": "MEASURE",
+      "name": "Approaches for tracking risks",
+      "priority": "high"
+    },
+    {
+      "id": "GOVERN 1.2",
+      "function": "GOVERN",
+      "name": "Trustworthy AI characteristics integrated",
+      "priority": "medium"
+    },
+    {
+      "id": "GOVERN 1.4",
+      "function": "GOVERN",
+      "name": "Risk management process documented",
+      "priority": "medium"
+    },
+    {
+      "id": "GOVERN 4.1",
+      "function": "GOVERN",
+      "name": "AI risk responsibilities documented",
+      "priority": "medium"
+    },
+    {
+      "id": "MANAGE 1.1",
+      "function": "MANAGE",
+      "name": "High-priority risks managed first",
+      "priority": "medium"
+    },
+    {
+      "id": "MANAGE 2.4",
+      "function": "MANAGE",
+      "name": "Mechanisms for users to provide feedback",
+      "priority": "medium"
+    },
+    {
+      "id": "MANAGE 4.2",
+      "function": "MANAGE",
+      "name": "Mechanisms for analyzing measurement",
+      "priority": "medium"
+    },
+    {
+      "id": "MAP 1.1",
+      "function": "MAP",
+      "name": "System purpose and context defined",
+      "priority": "medium"
+    },
+    {
+      "id": "MAP 2.1",
+      "function": "MAP",
+      "name": "System tasks and methods documented",
+      "priority": "medium"
+    },
+    {
+      "id": "MAP 4.2",
+      "function": "MAP",
+      "name": "Internal risk controls documented",
+      "priority": "medium"
+    },
+    {
+      "id": "MAP 5.1",
+      "function": "MAP",
+      "name": "Likelihood and magnitude of impacts",
+      "priority": "medium"
+    },
+    {
+      "id": "MEASURE 2.11",
+      "function": "MEASURE",
+      "name": "Fairness and bias evaluated",
+      "priority": "medium"
+    },
+    {
+      "id": "MEASURE 2.8",
+      "function": "MEASURE",
+      "name": "Risks of inferred sensitive data",
+      "priority": "medium"
+    },
+    {
+      "id": "MEASURE 4.1",
+      "function": "MEASURE",
+      "name": "Measurement processes effective",
+      "priority": "medium"
+    },
+    {
+      "id": "MEASURE 4.2",
+      "function": "MEASURE",
+      "name": "Measurement results communicated",
+      "priority": "medium"
+    },
+    {
+      "id": "GOVERN 1.7",
+      "function": "GOVERN",
+      "name": "AI deactivation processes",
+      "priority": "low"
+    },
+    {
+      "id": "GOVERN 5.1",
+      "function": "GOVERN",
+      "name": "Stakeholder engagement processes",
+      "priority": "low"
+    },
+    {
+      "id": "MANAGE 2.1",
+      "function": "MANAGE",
+      "name": "Resources allocated to manage AI risks",
+      "priority": "low"
+    },
+    {
+      "id": "MAP 1.2",
+      "function": "MAP",
+      "name": "Interdisciplinary AI actors engaged",
+      "priority": "low"
+    },
+    {
+      "id": "MEASURE 2.12",
+      "function": "MEASURE",
+      "name": "Environmental impact assessed",
+      "priority": "low"
+    }
+  ]
+}

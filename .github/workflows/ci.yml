@@ -279,3 +279,41 @@ jobs:
           test -f ./out/citation_audit.json
           # Confirm zero hallucinations from the stub client.
           python -c "import json; d=json.load(open('./out/citation_audit.json')); assert d['total_hallucinations']==0, d"
+
+  airmf-gap-analyzer:
+    name: Project 8 — pytest + portfolio gap analysis
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    defaults:
+      run:
+        working-directory: 08-nist-ai-rmf-gap-analyzer
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: 08-nist-ai-rmf-gap-analyzer/requirements.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run pytest (offline, no API key)
+        run: pytest -q
+
+      - name: Run the gap analyzer over the entire portfolio
+        run: |
+          python analyzer.py --portfolio-root .. --output ./out --quiet
+          test -f ./out/coverage.json
+          test -f ./out/gap_report.md
+          # The analyzer must always cover at least some MEASURE / MANAGE
+          # subcategories — Projects 1-7 emit evidence for those by design.
+          python -c "import json; d=json.load(open('./out/coverage.json')); assert d['run']['total_covered'] > 0, 'expected non-zero coverage from upstream projects'"

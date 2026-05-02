@@ -1,0 +1,38 @@
+id: AIRT-002
+name: System Prompt Leakage Confirmed by Red-Team Probe
+description: |
+  Fires when a Project 2 red-team probe in the LLM07 (System Prompt
+  Leakage) category lands a fail verdict. The probe tests whether the
+  target LLM application's system prompt can be extracted via direct
+  request, repeat-verbatim phrasing, or roleplay-extraction — and the
+  fail verdict confirms it can. System-prompt leakage is foundational
+  for further attacks (override, code extraction, refusal bypass) so
+  this is treated as a high-priority finding.
+
+source_index: aisec
+sourcetype: aisec:red_team
+event_type: ai_red_team_finding
+
+severity: high
+mitre_atlas: [AML.T0051]
+owasp_llm: LLM07
+airmf: MEASURE 2.7
+
+condition:
+  field: owasp_category
+  operator: equals
+  value: LLM07
+
+aggregation:
+  group_by: [target_name]
+  threshold_count: 1
+  window: 1d
+
+response:
+  notable_event: true
+  drilldown_field: probe_id
+  recommended_action: |
+    Move any secrets currently embedded in the target's system prompt to
+    a runtime-injected secrets layer (env vars, secrets manager). The
+    system prompt should not contain values whose disclosure changes
+    the security posture.

@@ -1,0 +1,32 @@
+title: Malicious Prompt Injection Detected
+id: 86a3d780-7101-7a87-849b-208880dd8f15
+status: experimental
+description: |
+  Fires on any malicious-verdict event from the Project 1 prompt-injection
+  detector. These represent direct injection attempts that the heuristic
+  layer (PI-001..PI-009) classified as malicious — typically multiple
+  high-severity rules firing on a single user input.
+references:
+  - https://atlas.mitre.org/
+  - https://owasp.org/www-project-top-10-for-large-language-model-applications/
+author: AI Security Portfolio (Project 4 generator)
+date: 2026/04/30
+tags:
+  - attack.llm01
+  - atlas.aml-t0051
+  - airmf.measure_2_7
+logsource:
+  product: aisec
+  service: prompt_injection
+detection:
+  selection:
+    verdict: malicious
+  condition: selection
+fields:
+  - user
+  - app
+  - src_input_excerpt
+falsepositives:
+  - Authorized red-team exercises against the AI application
+  - Internal QA running probe libraries against staging targets
+level: high

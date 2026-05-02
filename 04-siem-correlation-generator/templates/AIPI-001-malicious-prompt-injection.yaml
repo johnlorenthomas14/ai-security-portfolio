@@ -1,0 +1,34 @@
+id: AIPI-001
+name: Malicious Prompt Injection Detected
+description: |
+  Fires on any malicious-verdict event from the Project 1 prompt-injection
+  detector. These represent direct injection attempts that the heuristic
+  layer (PI-001..PI-009) classified as malicious — typically multiple
+  high-severity rules firing on a single user input.
+
+source_index: aisec
+sourcetype: aisec:prompt_injection
+event_type: ai_prompt_injection
+
+severity: high
+mitre_atlas: [AML.T0051]
+owasp_llm: LLM01
+airmf: MEASURE 2.7
+
+condition:
+  field: verdict
+  operator: equals
+  value: malicious
+
+aggregation:
+  group_by: [user, app]
+  threshold_count: 1
+  window: 1h
+
+response:
+  notable_event: true
+  drilldown_field: src_input_excerpt
+  recommended_action: |
+    Pivot to the source application's session log via the user/app fields.
+    Confirm whether the injection was followed by tool-call activity that
+    would warrant escalation.

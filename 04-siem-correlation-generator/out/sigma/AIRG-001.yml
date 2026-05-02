@@ -1,0 +1,32 @@
+title: Credentials Detected in RAG Corpus Document
+id: 32ac6346-6d16-b353-1150-7bbeb5fb89d0
+status: experimental
+description: |
+  Fires when the Project 3 RAG auditor finds a credential leak in a
+  corpus document — AWS keys, GitHub tokens, Anthropic / OpenAI keys,
+  PEM-block private keys, or .env-style credential variables. Once a
+  document is in the corpus, retrieval can surface its contents to any
+  authorized user — meaning a credential in the corpus is effectively
+  shared with the entire authorized-user population.
+references:
+  - https://atlas.mitre.org/
+  - https://owasp.org/www-project-top-10-for-large-language-model-applications/
+author: AI Security Portfolio (Project 4 generator)
+date: 2026/04/30
+tags:
+  - attack.llm02
+  - atlas.aml-t0024
+  - airmf.measure_2_10
+logsource:
+  product: aisec
+  service: rag_finding
+detection:
+  selection:
+    category: secret_leak
+  condition: selection
+fields:
+  - document_path
+falsepositives:
+  - Authorized red-team exercises against the AI application
+  - Internal QA running probe libraries against staging targets
+level: critical

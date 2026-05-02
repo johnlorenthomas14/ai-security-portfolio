@@ -1,0 +1,36 @@
+id: AIPI-002
+name: Suspicious Prompt Injection Burst from Single User
+description: |
+  Catches a burst of suspicious-verdict events from one user in a short
+  window. Single suspicious events are common (clumsy phrasing, edge-case
+  inputs) but a burst from one user inside an hour is the access-pattern
+  signature of someone iterating on injection payloads to find one that
+  works. Threshold tunable per environment.
+
+source_index: aisec
+sourcetype: aisec:prompt_injection
+event_type: ai_prompt_injection
+
+severity: medium
+mitre_atlas: [AML.T0051, AML.T0054]
+owasp_llm: LLM01
+airmf: MEASURE 2.7
+
+condition:
+  field: verdict
+  operator: equals
+  value: suspicious
+
+aggregation:
+  group_by: [user]
+  threshold_count: 5
+  window: 1h
+
+response:
+  notable_event: true
+  drilldown_field: src_input_excerpt
+  recommended_action: |
+    Review the user's full session timeline. A burst of suspicious verdicts
+    is the iteration signature of a manual attacker — pull the user's
+    upstream application logs and look for evidence of successful
+    capitulation downstream.

@@ -1,0 +1,35 @@
+title: Red-Team Probe Identified Capitulation in Production Target
+id: c09a1956-0495-f1a3-cf29-20e922f20a99
+status: experimental
+description: |
+  Fires on any fail-verdict event from a Project 2 red-team scan. A fail
+  verdict means the framework confirmed the target capitulated to a
+  probe — i.e., a reproducible vulnerability against a deployed LLM
+  application. Critical findings indicate confirmed control gaps that
+  require immediate Manage-function action: system-prompt update,
+  input-layer detector deployment, or output-layer guardrail.
+references:
+  - https://atlas.mitre.org/
+  - https://owasp.org/www-project-top-10-for-large-language-model-applications/
+author: AI Security Portfolio (Project 4 generator)
+date: 2026/04/30
+tags:
+  - attack.llm01
+  - atlas.aml-t0051
+  - atlas.aml-t0054
+  - airmf.measure_2_7
+logsource:
+  product: aisec
+  service: red_team_finding
+detection:
+  selection:
+    verdict: fail
+  condition: selection
+fields:
+  - target_name
+  - owasp_category
+  - probe_id
+falsepositives:
+  - Authorized red-team exercises against the AI application
+  - Internal QA running probe libraries against staging targets
+level: high

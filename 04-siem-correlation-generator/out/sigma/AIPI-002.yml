@@ -1,0 +1,33 @@
+title: Suspicious Prompt Injection Burst from Single User
+id: 3c2306a6-0909-4de4-d5e5-4cdee88640a4
+status: experimental
+description: |
+  Catches a burst of suspicious-verdict events from one user in a short
+  window. Single suspicious events are common (clumsy phrasing, edge-case
+  inputs) but a burst from one user inside an hour is the access-pattern
+  signature of someone iterating on injection payloads to find one that
+  works. Threshold tunable per environment.
+references:
+  - https://atlas.mitre.org/
+  - https://owasp.org/www-project-top-10-for-large-language-model-applications/
+author: AI Security Portfolio (Project 4 generator)
+date: 2026/04/30
+tags:
+  - attack.llm01
+  - atlas.aml-t0051
+  - atlas.aml-t0054
+  - airmf.measure_2_7
+logsource:
+  product: aisec
+  service: prompt_injection
+detection:
+  selection:
+    verdict: suspicious
+  condition: selection
+fields:
+  - user
+  - src_input_excerpt
+falsepositives:
+  - Authorized red-team exercises against the AI application
+  - Internal QA running probe libraries against staging targets
+level: medium

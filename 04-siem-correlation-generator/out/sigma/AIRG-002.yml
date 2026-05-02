@@ -1,0 +1,31 @@
+title: Classification Marker Spillage in RAG Corpus
+id: 2a9d8524-4299-5cf5-d1c8-bd79931514a5
+status: experimental
+description: |
+  Fires when the Project 3 RAG auditor finds a sensitivity / classification
+  marker (CUI, FOUO, CONFIDENTIAL, SECRET, ITAR, ATTORNEY-CLIENT, PHI) in
+  a corpus document that's queryable by general users. A document carrying
+  any of these markers in an unrestricted RAG corpus is — at minimum — a
+  policy violation, and at the higher tiers, a classified-spillage incident.
+references:
+  - https://atlas.mitre.org/
+  - https://owasp.org/www-project-top-10-for-large-language-model-applications/
+author: AI Security Portfolio (Project 4 generator)
+date: 2026/04/30
+tags:
+  - attack.llm02
+  - atlas.aml-t0024
+  - airmf.govern_1_3
+logsource:
+  product: aisec
+  service: rag_finding
+detection:
+  selection:
+    category: sensitivity_marker
+  condition: selection
+fields:
+  - document_path
+falsepositives:
+  - Authorized red-team exercises against the AI application
+  - Internal QA running probe libraries against staging targets
+level: critical

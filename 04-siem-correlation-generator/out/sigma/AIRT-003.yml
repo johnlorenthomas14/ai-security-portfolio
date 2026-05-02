@@ -1,0 +1,33 @@
+title: Jailbreak Persona Adoption Confirmed
+id: 4257086f-8f59-ab5e-9dd4-fae8784d3f64
+status: experimental
+description: |
+  Fires on a Project 2 red-team probe in the LLM09 (Misinformation /
+  Jailbreak) category that landed a fail verdict. Confirms the target
+  adopted a named persona override (DAN, AIM, developer-mode, etc.) —
+  i.e., the model's RLHF-trained refusal posture was successfully
+  bypassed. Once a persona override succeeds, the model is effectively
+  ungoverned for the rest of that conversation.
+references:
+  - https://atlas.mitre.org/
+  - https://owasp.org/www-project-top-10-for-large-language-model-applications/
+author: AI Security Portfolio (Project 4 generator)
+date: 2026/04/30
+tags:
+  - attack.llm09
+  - atlas.aml-t0054
+  - airmf.measure_2_6
+logsource:
+  product: aisec
+  service: red_team_finding
+detection:
+  selection:
+    owasp_category: LLM09
+  condition: selection
+fields:
+  - target_name
+  - probe_id
+falsepositives:
+  - Authorized red-team exercises against the AI application
+  - Internal QA running probe libraries against staging targets
+level: high

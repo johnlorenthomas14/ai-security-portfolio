@@ -1,0 +1,154 @@
+{
+  "type": "bundle",
+  "id": "bundle--01-phishing-campaign-2026q1",
+  "spec_version": "2.1",
+  "objects": [
+    {
+      "type": "identity",
+      "spec_version": "2.1",
+      "id": "identity--source-soc-2026",
+      "created": "2026-04-15T09:00:00Z",
+      "modified": "2026-04-15T09:00:00Z",
+      "name": "Demo SOC Threat Research",
+      "identity_class": "organization"
+    },
+    {
+      "type": "campaign",
+      "spec_version": "2.1",
+      "id": "campaign--apt-finsector-2026q1",
+      "created": "2026-04-15T09:30:00Z",
+      "modified": "2026-04-22T14:00:00Z",
+      "created_by_ref": "identity--source-soc-2026",
+      "name": "FinSector Credential Harvesting Campaign Q1 2026",
+      "description": "Spear-phishing campaign targeting US financial-sector organizations between Feb and April 2026. Phishing emails impersonate internal IT and contain a link to a credential-harvesting page that mimics the target's SSO portal. Captured credentials are exfiltrated to attacker-controlled infrastructure.",
+      "first_seen": "2026-02-08T00:00:00Z",
+      "last_seen": "2026-04-14T00:00:00Z",
+      "objective": "Harvest corporate SSO credentials"
+    },
+    {
+      "type": "threat-actor",
+      "spec_version": "2.1",
+      "id": "threat-actor--mimicry-collective",
+      "created": "2026-04-15T09:30:00Z",
+      "modified": "2026-04-22T14:00:00Z",
+      "created_by_ref": "identity--source-soc-2026",
+      "name": "Mimicry Collective",
+      "description": "Financially-motivated threat group active since late 2025. Specializes in credential-harvesting via near-identical clones of corporate SSO portals. Operating tempo is consistent with a small (3-5 person) crew.",
+      "threat_actor_types": ["crime-syndicate"],
+      "sophistication": "intermediate"
+    },
+    {
+      "type": "malware",
+      "spec_version": "2.1",
+      "id": "malware--credstealer-q1-2026",
+      "created": "2026-04-15T09:30:00Z",
+      "modified": "2026-04-22T14:00:00Z",
+      "created_by_ref": "identity--source-soc-2026",
+      "name": "CredStealer-Q1-2026",
+      "description": "Single-stage credential harvester delivered as a phishing-link target page. Captures SSO username + password and posts them to an attacker C2 endpoint over HTTPS. No persistence component observed.",
+      "is_family": false,
+      "malware_types": ["credential-exploitation-tool"]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--phishing-spearphishing-link",
+      "created": "2026-04-15T09:30:00Z",
+      "modified": "2026-04-15T09:30:00Z",
+      "name": "Spearphishing via Link (T1566.002)",
+      "description": "Phishing email contains a malicious URL targeting credential capture. Mapped to MITRE ATT&CK T1566.002.",
+      "external_references": [
+        {"source_name": "mitre-attack", "external_id": "T1566.002"}
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--phish-domain-acme-sso",
+      "created": "2026-04-15T09:30:00Z",
+      "modified": "2026-04-15T09:30:00Z",
+      "name": "Phishing domain mimicking ACME SSO",
+      "description": "Look-alike domain hosting the credential-harvesting page mimicking the ACME Corporation SSO portal.",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[domain-name:value = 'acme-sso.example-attacker.com']",
+      "pattern_type": "stix",
+      "valid_from": "2026-02-08T00:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--c2-exfil-endpoint",
+      "created": "2026-04-15T09:30:00Z",
+      "modified": "2026-04-15T09:30:00Z",
+      "name": "Credential exfiltration C2 endpoint",
+      "description": "HTTPS POST endpoint receiving harvested credentials from the phishing pages.",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[url:value = 'https://exfil.example-attacker.com/c2/submit']",
+      "pattern_type": "stix",
+      "valid_from": "2026-02-08T00:00:00Z"
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--phish-page-sha256",
+      "created": "2026-04-15T09:30:00Z",
+      "modified": "2026-04-15T09:30:00Z",
+      "name": "Phishing landing page (HTML) SHA256",
+      "description": "SHA-256 of the credential-harvesting landing page HTML observed across 14 distinct domains in the campaign.",
+      "indicator_types": ["malicious-activity"],
+      "pattern": "[file:hashes.'SHA-256' = 'a1b2c3d4e5f60718293a4b5c6d7e8f9012345678abcdef0123456789abcdef01']",
+      "pattern_type": "stix",
+      "valid_from": "2026-02-08T00:00:00Z"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--actor-uses-malware",
+      "created": "2026-04-15T09:30:00Z",
+      "modified": "2026-04-15T09:30:00Z",
+      "relationship_type": "uses",
+      "source_ref": "threat-actor--mimicry-collective",
+      "target_ref": "malware--credstealer-q1-2026"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--campaign-uses-pattern",
+      "created": "2026-04-15T09:30:00Z",
+      "modified": "2026-04-15T09:30:00Z",
+      "relationship_type": "uses",
+      "source_ref": "campaign--apt-finsector-2026q1",
+      "target_ref": "attack-pattern--phishing-spearphishing-link"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--campaign-attributed-to-actor",
+      "created": "2026-04-15T09:30:00Z",
+      "modified": "2026-04-15T09:30:00Z",
+      "relationship_type": "attributed-to",
+      "source_ref": "campaign--apt-finsector-2026q1",
+      "target_ref": "threat-actor--mimicry-collective"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--indicator-indicates-malware-1",
+      "created": "2026-04-15T09:30:00Z",
+      "modified": "2026-04-15T09:30:00Z",
+      "relationship_type": "indicates",
+      "source_ref": "indicator--phish-domain-acme-sso",
+      "target_ref": "malware--credstealer-q1-2026"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--indicator-indicates-malware-2",
+      "created": "2026-04-15T09:30:00Z",
+      "modified": "2026-04-15T09:30:00Z",
+      "relationship_type": "indicates",
+      "source_ref": "indicator--c2-exfil-endpoint",
+      "target_ref": "malware--credstealer-q1-2026"
+    }
+  ]
+}

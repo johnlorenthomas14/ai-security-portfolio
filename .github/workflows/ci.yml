@@ -239,3 +239,43 @@ jobs:
           test -f ./out/sbom.cdx.json
           # Validate the SBOM is well-formed CycloneDX 1.5.
           python -c "import json; d=json.load(open('./out/sbom.cdx.json')); assert d['specVersion']=='1.5' and d['bomFormat']=='CycloneDX'"
+
+  threat-intel-summarizer:
+    name: Project 7 — pytest + offline summarizer + citation audit
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    defaults:
+      run:
+        working-directory: 07-threat-intel-summarizer
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: 07-threat-intel-summarizer/requirements.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run pytest (offline, no API key)
+        run: pytest -q
+
+      - name: Summarize sample bundles in offline mode
+        # Stub client should produce zero hallucinations; CLI returns 0
+        # only when the citation audit is clean.
+        run: |
+          python summarizer.py --offline --output ./out --quiet
+          test -f ./out/briefs/01-phishing-campaign.md
+          test -f ./out/briefs/02-cve-advisory.md
+          test -f ./out/citation_audit.json
+          # Confirm zero hallucinations from the stub client.
+          python -c "import json; d=json.load(open('./out/citation_audit.json')); assert d['total_hallucinations']==0, d"

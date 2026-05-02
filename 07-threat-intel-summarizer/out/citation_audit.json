@@ -1,0 +1,34 @@
+{
+  "bundles_processed": 2,
+  "total_hallucinations": 0,
+  "results": [
+    {
+      "bundle_path": "/Users/johnthomas/Documents/Claude/ai-security-portfolio/07-threat-intel-summarizer/samples/stix_bundles/01-phishing-campaign.json",
+      "bundle_id": "bundle--01-phishing-campaign-2026q1",
+      "n_objects": 13,
+      "n_indicators_emitted": 3,
+      "generator": "stub",
+      "citations": {
+        "n_unique_citations": 7,
+        "n_hallucinated": 0,
+        "n_resolved": 7,
+        "hallucination_rate": 0.0
+      },
+      "hallucinated_citations": []
+    },
+    {
+      "bundle_path": "/Users/johnthomas/Documents/Claude/ai-security-portfolio/07-threat-intel-summarizer/samples/stix_bundles/02-cve-advisory.json",
+      "bundle_id": "bundle--02-cve-advisory-2026q1",
+      "n_objects": 9,
+      "n_indicators_emitted": 2,
+      "generator": "stub",
+      "citations": {
+        "n_unique_citations": 6,
+        "n_hallucinated": 0,
+        "n_resolved": 6,
+        "hallucination_rate": 0.0
+      },
+      "hallucinated_citations": []
+    }
+  ]
+}

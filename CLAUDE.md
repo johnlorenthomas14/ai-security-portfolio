@@ -44,24 +44,29 @@ re-asking.
   should produce something an AI Security Engineer hiring manager can read in
   five minutes and a security engineer can run in five more.
 
-## The 8 projects
+## The 9 projects (status: all working MVPs as of the build sprint completion)
 
-1. **LLM Prompt Injection Detection Pipeline** — real-time detection of
-   jailbreaks/injections, events forwarded to Splunk ES as notables.
-2. **AI Red-Team Automation Framework** — automated OWASP LLM Top 10
-   probing, results mapped to NIST AI RMF controls.
-3. **RAG Pipeline Security Auditor** — finds data leakage and indirect
-   injection risks in retrieval-augmented systems.
-4. **SIEM Correlation Rule Generator for AI Workloads** — emits
-   MITRE ATLAS-mapped Splunk correlation searches for AI-specific threats.
-5. **LLM Output Safety & Compliance Monitor** — FedRAMP-aware serverless
-   output auditing layer (PII, secrets, policy violations).
-6. **AI Model Supply Chain Risk Scanner** — scans open-source models for
-   poisoning indicators, malicious pickles, and provenance/SBOM risks.
-7. **Adaptive Threat Intelligence Summarizer** — STIX/TAXII feeds →
-   analyst-ready summaries pushed into Splunk ES.
-8. **NIST AI RMF Compliance Gap Analyzer** — extends Qmulos-style continuous
-   compliance into AI governance (Govern/Map/Measure/Manage).
+1. **LLM Prompt Injection Detection Pipeline** — hybrid heuristic + Claude-judge
+   detector at the LLM input layer; F1=1.000 on shipped eval, CI floor enforced;
+   ATLAS-tagged verdicts forwarded to Splunk ES as notables.
+2. **AI Red-Team Automation Framework** — 20 OWASP LLM Top 10 probes against
+   any LLM target; three-layer scorer reuses Project 1; AI-RMF-aligned
+   evidence report.
+3. **RAG Pipeline Security Auditor** — static corpus scanner with four
+   classes (indirect-injection, PII, credentials, sensitivity markers).
+4. **SIEM Correlation Rule Generator for AI Workloads** — one canonical YAML
+   rule → three SIEM-native outputs (Splunk ES, Sigma, Cortex XSIAM XQL).
+5. **LLM Output Safety & Compliance Monitor** — runtime output guardrail
+   with hash-chained tamper-evident audit log (FedRAMP-flavored integrity).
+6. **AI Model Supply Chain Risk Scanner** — pickle-opcode disassembly without
+   execution + provenance + risky-deps; CycloneDX 1.5 SBOM fragment output.
+7. **Adaptive Threat Intelligence Summarizer** — STIX 2.1 → cited briefs +
+   Splunk notables; citation verifier rejects hallucinated references.
+8. **NIST AI RMF Compliance Gap Analyzer** — capstone; reads Projects 1-7's
+   outputs and produces continuous-monitoring evidence + gap report.
+9. **Autonomous SOC Analyst Agent** — agentic tool-use loop with six analyst
+   tools, defended at the input layer by Project 1; 8-case eval suite at
+   100% pass rate; CI-gated at 75% pass-rate floor.
 
 ## Portfolio thesis (use to break ties on design choices)
 

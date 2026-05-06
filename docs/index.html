@@ -348,59 +348,70 @@
           <span class="tag">CUI / FOUO / PHI</span>
         </div>
       </a>
-      <a class="card" href="#">
-        <span class="num">04 / spec</span>
-        <span class="status spec">spec</span>
+      <a class="card" href="https://github.com/johnlorenthomas14/ai-security-portfolio/tree/main/04-siem-correlation-generator">
+        <span class="num">04 / mvp</span>
+        <span class="status mvp">working mvp</span>
         <h3>SIEM Correlation Rule Generator</h3>
-        <p>Generates ATLAS-mapped Splunk ES correlation searches and Sigma rules for AI-specific threats. CIM data model included.</p>
+        <p>One canonical YAML rule → three SIEM-native outputs (Splunk ES correlation searches, Sigma rules, Cortex XSIAM XQL). 8 starter rules covering Projects 1–3 event shapes, auto-generated AI-RMF coverage map.</p>
         <div class="tags">
           <span class="tag atlas">ATLAS</span>
           <span class="tag">Splunk ES</span>
-          <span class="tag">Sigma</span>
+          <span class="tag">Sigma · XSIAM</span>
         </div>
       </a>
-      <a class="card" href="#">
-        <span class="num">05 / spec</span>
-        <span class="status spec">spec</span>
+      <a class="card" href="https://github.com/johnlorenthomas14/ai-security-portfolio/tree/main/05-llm-output-compliance-monitor">
+        <span class="num">05 / mvp</span>
+        <span class="status mvp">working mvp</span>
         <h3>LLM Output Compliance Monitor</h3>
-        <p>FedRAMP-aware serverless output auditor. Hash-chained audit log, Object-Lock S3 retention, GovCloud-deployable Terraform.</p>
+        <p>Runtime output guardrail with PII / secrets / classification / policy filters. Every decision is appended to a hash-chained, tamper-evident audit log — the FedRAMP-flavored integrity-evidence pattern.</p>
         <div class="tags">
           <span class="tag">FedRAMP</span>
-          <span class="tag">GovCloud</span>
+          <span class="tag">Hash chain</span>
           <span class="tag rmf">AI RMF</span>
         </div>
       </a>
-      <a class="card" href="#">
-        <span class="num">06 / spec</span>
-        <span class="status spec">spec</span>
+      <a class="card" href="https://github.com/johnlorenthomas14/ai-security-portfolio/tree/main/06-model-supply-chain-scanner">
+        <span class="num">06 / mvp</span>
+        <span class="status mvp">working mvp</span>
         <h3>Model Supply Chain Risk Scanner</h3>
-        <p>Scans HuggingFace artifacts for malicious pickles, tokenizer trojans, and provenance gaps. Emits a CycloneDX SBOM fragment.</p>
+        <p>Pickle-opcode disassembly without execution + provenance + risky-deps scanning of model artifacts. Emits a CycloneDX 1.5 SBOM fragment for downstream supply-chain tooling.</p>
         <div class="tags">
-          <span class="tag">SBOM</span>
-          <span class="tag">CM-8 / SR-3</span>
+          <span class="tag owasp">LLM03</span>
+          <span class="tag">CycloneDX 1.5</span>
           <span class="tag">Pickle scan</span>
         </div>
       </a>
-      <a class="card" href="#">
-        <span class="num">07 / spec</span>
-        <span class="status spec">spec</span>
+      <a class="card" href="https://github.com/johnlorenthomas14/ai-security-portfolio/tree/main/07-threat-intel-summarizer">
+        <span class="num">07 / mvp</span>
+        <span class="status mvp">working mvp</span>
         <h3>Adaptive Threat Intel Summarizer</h3>
-        <p>Consumes STIX/TAXII feeds, reputation-weights sources, produces analyst-ready briefs with mandatory citations into Splunk ES notables.</p>
+        <p>STIX 2.1 → cited analyst briefs + Splunk notables. Citation verifier rejects hallucinated references — every claim Claude writes is bound to a real bundle object ID before reaching the SOC.</p>
         <div class="tags">
           <span class="tag">STIX 2.1</span>
-          <span class="tag">TAXII 2.x</span>
+          <span class="tag">Citation-verified</span>
           <span class="tag">Splunk notable</span>
         </div>
       </a>
-      <a class="card" href="#">
+      <a class="card" href="https://github.com/johnlorenthomas14/ai-security-portfolio/tree/main/08-nist-ai-rmf-gap-analyzer">
         <span class="num">08 / capstone</span>
-        <span class="status spec">spec</span>
+        <span class="status mvp">working mvp</span>
         <h3>NIST AI RMF Compliance Gap Analyzer</h3>
-        <p>Continuous compliance for AI governance. Consumes outputs of projects 1–7 as evidence. Modeled on Qmulos-style Splunk evidence collection.</p>
+        <p>Reads outputs from Projects 1–7, maps every finding to its AI RMF subcategory, produces continuous-monitoring evidence + gap report. The Qmulos Q-Compliance / Q-Audit pattern, applied to AI governance.</p>
         <div class="tags">
           <span class="tag rmf">AI RMF 1.0</span>
-          <span class="tag">800-53 crosswalk</span>
-          <span class="tag">ATO evidence</span>
+          <span class="tag">Continuous evidence</span>
+          <span class="tag">Capstone</span>
+        </div>
+      </a>
+      <a class="card" href="https://github.com/johnlorenthomas14/ai-security-portfolio/tree/main/09-autonomous-soc-analyst">
+        <span class="num">09 / agent</span>
+        <span class="status mvp">working mvp</span>
+        <h3>Autonomous SOC Analyst Agent</h3>
+        <p>Agentic tool-use loop over Splunk notables. Six analyst tools, deterministic stub LLM client for offline runs, 8-case eval suite at 100% pass rate. The agent's input layer is defended by Project 1 — closed-loop AI-security defense-in-depth.</p>
+        <div class="tags">
+          <span class="tag">Agent</span>
+          <span class="tag atlas">Tool use</span>
+          <span class="tag">Eval suite</span>
         </div>
       </a>
     </div>

@@ -36,7 +36,7 @@ echo "→ first 30 lines of the gap report"
 type_cmd 'head -30 out/gap_report.md'
 
 echo "→ top covered subcategories with evidence references"
-type_cmd 'python3 -c "import json; d=json.load(open(\"out/coverage.json\")); covered=[s for s in d[\"subcategories\"] if s[\"covered\"]]; [print(f\"  {s[\\\"id\\\"]} ({s[\\\"function\\\"]}): {s[\\\"n_evidence_items\\\"]} item(s) from {s[\\\"contributing_projects\\\"]}\") for s in covered[:8]]"'
+type_cmd "python3 -c 'import json; d=json.load(open(\"out/coverage.json\")); [print(\"  {} ({}): {} item(s) from {}\".format(s[\"id\"], s[\"function\"], s[\"n_evidence_items\"], s[\"contributing_projects\"])) for s in d[\"subcategories\"] if s[\"covered\"]][:8]'"
 
 echo "→ pytest suite"
 type_cmd 'python3 -m pytest -q'

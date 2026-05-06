@@ -19,6 +19,22 @@ with function-level rollups, JSON + Markdown gap reports, a 14-test
 pytest suite, and a CI job that runs the analyzer over the whole
 portfolio on every push.
 
+## Demo
+
+[![asciicast](https://asciinema.org/a/Jb7bACNliktiREzo.svg)](https://asciinema.org/a/Jb7bACNliktiREzo)
+
+90-second walkthrough — the AI RMF subcategory catalog (35 entries across
+all four functions), the analyzer reading evidence from every upstream
+project's output, the per-function rollup (`GOVERN 22%`, `MAP 17%`,
+`MEASURE 40%`, `MANAGE 40%`), the gap report's executive summary, the
+covered-subcategories list with contributing-project references, and
+the pytest suite. Click the cast above to play, or run it yourself:
+
+```bash
+cd 08-nist-ai-rmf-gap-analyzer
+./demo.sh
+```
+
 ## What this project does
 
 Projects 1–7 each tag every finding with a `cim_eventtype`, an OWASP

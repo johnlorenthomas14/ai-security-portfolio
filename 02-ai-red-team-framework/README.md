@@ -16,6 +16,21 @@
 (2025) categories, an in-process deliberately-vulnerable demo target, and a
 pytest suite that runs the framework end-to-end with no API key required.
 
+## Demo
+
+[![asciicast](https://asciinema.org/a/OtS4RquzYAeLZG2K.svg)](https://asciinema.org/a/OtS4RquzYAeLZG2K)
+
+90-second walkthrough — the YAML probe library, a single probe up close,
+the runner firing 20 probes at the deliberately-vulnerable demo target
+(20/20 fail verdicts), the AI RMF Markdown evidence report, the
+Splunk-ingestible JSON findings, and the pytest suite. Click the cast
+above to play, or run it yourself:
+
+```bash
+cd 02-ai-red-team-framework
+./demo.sh
+```
+
 > **Engineering write-up:** [`WRITEUP.md`](./WRITEUP.md) — the why behind
 > every design decision in this framework. Threat model, scoring-layer
 > rationale, probe-schema trade-offs, calibration vs. operational signal,

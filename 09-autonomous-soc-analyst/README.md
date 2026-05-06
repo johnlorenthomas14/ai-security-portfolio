@@ -22,6 +22,24 @@ loop with three termination conditions, the eval set + scorer, an
 analyst CLI, a 17-test pytest suite, and a CI job that runs both the
 demo corpus and the eval suite against the agent on every push.
 
+## Demo
+
+[![asciicast](https://asciinema.org/a/rVnFwb0YRu3jrLwH.svg)](https://asciinema.org/a/rVnFwb0YRu3jrLwH)
+
+90-second walkthrough — the shipped demo notables, the agent triaging
+each one (DEMO-001 escalates immediately due to input-guard taint;
+DEMO-002 triages clean as a benign internal user; DEMO-003 escalates
+after running the full investigation chain `splunk_search →
+ioc_enrichment → stix_lookup → escalate_to_human` on a known-bad
+domain), the eval suite scoring the agent against eight golden triage
+outcomes (8/8 passed, 100% across all three accuracy axes), and the
+pytest suite. Click the cast above to play, or run it yourself:
+
+```bash
+cd 09-autonomous-soc-analyst
+./demo.sh
+```
+
 ## Threat model
 
 | | |

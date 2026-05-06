@@ -18,6 +18,22 @@ auto-generated coverage map keyed by OWASP / ATLAS / AI RMF, an 8-test
 pytest suite, and a CI job that regenerates the entire content set on
 every push.
 
+## Demo
+
+[![asciicast](https://asciinema.org/a/4O3MlPhBv2iiVdds.svg)](https://asciinema.org/a/4O3MlPhBv2iiVdds)
+
+90-second walkthrough — the canonical YAML rule library, a single rule
+up close (the critical-severity tool-abuse rule), the generator producing
+24 detection-content files across three SIEM platforms, samples of the
+generated Splunk ES `.conf`, Sigma `.yml`, and Cortex XSIAM `.xql`, the
+auto-generated coverage map, and the pytest suite. Click the cast above
+to play, or run it yourself:
+
+```bash
+cd 04-siem-correlation-generator
+./demo.sh
+```
+
 ## Why this project
 
 Projects 1, 2, and 3 produce CIM-aligned JSON events. Without correlation

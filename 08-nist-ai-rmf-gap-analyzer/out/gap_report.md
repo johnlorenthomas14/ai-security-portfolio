@@ -1,6 +1,6 @@
 # NIST AI RMF 1.0 Compliance Gap Report
 
-**Run time:** 2026-05-02T20:12:25.645802+00:00  
+**Run time:** 2026-05-06T17:50:15.573226+00:00  
 **Overall coverage:** 11 / 35 subcategories (31%)
 
 ## Coverage by AI RMF function
@@ -24,24 +24,24 @@ The AI Security Portfolio's measurable output covers **11 of 35** NIST AI RMF su
 
 ### `GOVERN 1.3` — Risk processes calibrated to organizational impact
 
-- **Function:** GOVERN  · **Priority:** high  · **Contributing projects:** 03-rag-security-auditor, 04-siem-correlation-generator, 05-llm-output-compliance-monitor  · **Total findings:** 5
+- **Function:** GOVERN  · **Priority:** high  · **Contributing projects:** 03-rag-security-auditor, 04-siem-correlation-generator, 05-llm-output-compliance-monitor  · **Total findings:** 9
 - **Description:** Processes, procedures, and practices are in place to determine the needed level of risk management activities based on AI system impact level.
 
 **Evidence:**
 
 - `03-rag-security-auditor/out/findings.json` (03-rag-security-auditor) — 2 finding(s) tagged GOVERN 1.3 from 03-rag-security-auditor
 - `04-siem-correlation-generator/templates` (04-siem-correlation-generator) — 1 canonical rule template(s) tagged GOVERN 1.3 — deployable correlation content for the subcategory
-- `05-llm-output-compliance-monitor/out/audit.jsonl` (05-llm-output-compliance-monitor) — 2 finding(s) tagged GOVERN 1.3 from 05-llm-output-compliance-monitor
+- `05-llm-output-compliance-monitor/out/audit.jsonl` (05-llm-output-compliance-monitor) — 6 finding(s) tagged GOVERN 1.3 from 05-llm-output-compliance-monitor
 
 ### `GOVERN 1.5` — Continuous monitoring policy
 
-- **Function:** GOVERN  · **Priority:** high  · **Contributing projects:** 01-prompt-injection-pipeline, 05-llm-output-compliance-monitor  · **Total findings:** 20
+- **Function:** GOVERN  · **Priority:** high  · **Contributing projects:** 01-prompt-injection-pipeline, 05-llm-output-compliance-monitor  · **Total findings:** 58
 - **Description:** Ongoing monitoring and periodic review of the AI risk management process and its outcomes is planned.
 
 **Evidence:**
 
 - `01-prompt-injection-pipeline` (01-prompt-injection-pipeline) — Continuous monitoring policy: every push runs the eval and pytest suite; regressions break the build
-- `05-llm-output-compliance-monitor/out/audit.jsonl` (05-llm-output-compliance-monitor) — 19 hash-chained audit entries — continuous monitoring evidence
+- `05-llm-output-compliance-monitor/out/audit.jsonl` (05-llm-output-compliance-monitor) — 57 hash-chained audit entries — continuous monitoring evidence
 
 ### `MANAGE 2.3` — Mechanisms to override or disengage
 
@@ -73,12 +73,12 @@ The AI Security Portfolio's measurable output covers **11 of 35** NIST AI RMF su
 
 ### `MANAGE 4.3` — Incidents documented
 
-- **Function:** MANAGE  · **Priority:** medium  · **Contributing projects:** 05-llm-output-compliance-monitor  · **Total findings:** 19
+- **Function:** MANAGE  · **Priority:** medium  · **Contributing projects:** 05-llm-output-compliance-monitor  · **Total findings:** 57
 - **Description:** Incidents and errors are communicated to relevant AI actors including affected communities. Processes for tracking, responding to, and recovering from incidents and errors are followed and documented.
 
 **Evidence:**
 
-- `05-llm-output-compliance-monitor/out/audit.jsonl` (05-llm-output-compliance-monitor) — 19 audit entries documenting compliance-monitor decisions
+- `05-llm-output-compliance-monitor/out/audit.jsonl` (05-llm-output-compliance-monitor) — 57 audit entries documenting compliance-monitor decisions
 
 ### `MAP 4.1` — Third-party risks documented
 
@@ -101,7 +101,7 @@ The AI Security Portfolio's measurable output covers **11 of 35** NIST AI RMF su
 
 ### `MEASURE 2.10` — Privacy risk evaluated
 
-- **Function:** MEASURE  · **Priority:** high  · **Contributing projects:** 02-ai-red-team-framework, 03-rag-security-auditor, 04-siem-correlation-generator, 05-llm-output-compliance-monitor  · **Total findings:** 27
+- **Function:** MEASURE  · **Priority:** high  · **Contributing projects:** 02-ai-red-team-framework, 03-rag-security-auditor, 04-siem-correlation-generator, 05-llm-output-compliance-monitor  · **Total findings:** 43
 - **Description:** Privacy risk of the AI system — as identified in the MAP function — is examined and documented.
 
 **Evidence:**
@@ -109,18 +109,18 @@ The AI Security Portfolio's measurable output covers **11 of 35** NIST AI RMF su
 - `02-ai-red-team-framework/out/findings.json` (02-ai-red-team-framework) — 3 finding(s) tagged MEASURE 2.10 from 02-ai-red-team-framework
 - `03-rag-security-auditor/out/findings.json` (03-rag-security-auditor) — 15 finding(s) tagged MEASURE 2.10 from 03-rag-security-auditor
 - `04-siem-correlation-generator/templates` (04-siem-correlation-generator) — 1 canonical rule template(s) tagged MEASURE 2.10 — deployable correlation content for the subcategory
-- `05-llm-output-compliance-monitor/out/audit.jsonl` (05-llm-output-compliance-monitor) — 8 finding(s) tagged MEASURE 2.10 from 05-llm-output-compliance-monitor
+- `05-llm-output-compliance-monitor/out/audit.jsonl` (05-llm-output-compliance-monitor) — 24 finding(s) tagged MEASURE 2.10 from 05-llm-output-compliance-monitor
 
 ### `MEASURE 2.6` — Computational and physical safety
 
-- **Function:** MEASURE  · **Priority:** high  · **Contributing projects:** 02-ai-red-team-framework, 04-siem-correlation-generator, 05-llm-output-compliance-monitor  · **Total findings:** 10
+- **Function:** MEASURE  · **Priority:** high  · **Contributing projects:** 02-ai-red-team-framework, 04-siem-correlation-generator, 05-llm-output-compliance-monitor  · **Total findings:** 18
 - **Description:** AI system is evaluated regularly for safety risks — as identified in the MAP function. The AI system to be deployed is demonstrated to be safe, its residual negative risk does not exceed risk tolerance, and it can fail safely.
 
 **Evidence:**
 
 - `02-ai-red-team-framework/out/findings.json` (02-ai-red-team-framework) — 5 finding(s) tagged MEASURE 2.6 from 02-ai-red-team-framework
 - `04-siem-correlation-generator/templates` (04-siem-correlation-generator) — 1 canonical rule template(s) tagged MEASURE 2.6 — deployable correlation content for the subcategory
-- `05-llm-output-compliance-monitor/out/audit.jsonl` (05-llm-output-compliance-monitor) — 4 finding(s) tagged MEASURE 2.6 from 05-llm-output-compliance-monitor
+- `05-llm-output-compliance-monitor/out/audit.jsonl` (05-llm-output-compliance-monitor) — 12 finding(s) tagged MEASURE 2.6 from 05-llm-output-compliance-monitor
 
 ### `MEASURE 2.7` — Security and resilience evaluated
 

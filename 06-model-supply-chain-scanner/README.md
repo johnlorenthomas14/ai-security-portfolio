@@ -20,6 +20,24 @@ suite that includes programmatically-constructed malicious pickles, and
 a CI job that scans the demo model and validates the emitted SBOM on
 every push.
 
+## Demo
+
+[![asciicast](https://asciinema.org/a/JNeREh3m29bJTTeH.svg)](https://asciinema.org/a/JNeREh3m29bJTTeH)
+
+90-second walkthrough — the demo model directory layout, the scanner
+running over it (one high-severity `requests` dependency finding, one
+low-severity missing-manifest finding), the Markdown audit report,
+the emitted CycloneDX 1.5 SBOM fragment with SHA-256 hashes per file,
+and the pytest suite (which includes the programmatically-constructed
+malicious-pickle path that proves the opcode scanner catches `os.system`
+references without executing the pickle). Click the cast above to play,
+or run it yourself:
+
+```bash
+cd 06-model-supply-chain-scanner
+./demo.sh
+```
+
 ## Threat model
 
 | | |

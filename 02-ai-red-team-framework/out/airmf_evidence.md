@@ -1,7 +1,7 @@
 # AI Red-Team Run — NIST AI RMF Evidence Report
 
 **Target:** `demo-vulnerable-helpdesk` (model: `demo-mock-v1`)  
-**Run time:** 2026-04-30T19:19:06.263007+00:00  
+**Run time:** 2026-05-06T17:42:29.298259+00:00  
 **Probes executed:** 20  
 **Result:** 0 pass · 0 warning · 20 fail (pass rate: 0%)
 

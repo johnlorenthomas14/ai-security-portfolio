@@ -1,6 +1,6 @@
 {
   "run": {
-    "run_time": "2026-05-02T19:37:23.001086+00:00",
+    "run_time": "2026-05-06T17:47:06.473818+00:00",
     "model_root": "/Users/johnthomas/Documents/Claude/ai-security-portfolio/06-model-supply-chain-scanner/samples/demo_model",
     "summary": {
       "n_files_scanned": 5,
@@ -40,7 +40,7 @@
       "cim_eventtype": "ai_model_supply_chain_finding",
       "signature": "model_supply_chain_scanner",
       "event_severity": "low",
-      "event_time": "2026-05-02T19:37:23.001313+00:00"
+      "event_time": "2026-05-06T17:47:06.474033+00:00"
     },
     {
       "finding_id": "MS-DEP-risky_requests-requirements.txt",
@@ -60,7 +60,7 @@
       "cim_eventtype": "ai_model_supply_chain_finding",
       "signature": "model_supply_chain_scanner",
       "event_severity": "high",
-      "event_time": "2026-05-02T19:37:23.001343+00:00"
+      "event_time": "2026-05-06T17:47:06.474061+00:00"
     }
   ]
 }

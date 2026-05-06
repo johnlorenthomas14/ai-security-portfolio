@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.5",
-  "serialNumber": "urn:uuid:63c782f0-694b-49ad-9760-e66aba52babc",
+  "serialNumber": "urn:uuid:1d8779a0-6b60-4ef2-83a7-b83fec5eb50c",
   "version": 1,
   "metadata": {
-    "timestamp": "2026-05-02T19:37:23.005233+00:00",
+    "timestamp": "2026-05-06T17:47:06.478215+00:00",
     "tools": [
       {
         "vendor": "AI Security Portfolio",

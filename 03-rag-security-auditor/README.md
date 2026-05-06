@@ -16,6 +16,21 @@
 documents (several intentionally polluted), pytest end-to-end coverage,
 and a CI job that runs the full audit on every push.
 
+## Demo
+
+[![asciicast](https://asciinema.org/a/ey747xtH1ZX1djfX.svg)](https://asciinema.org/a/ey747xtH1ZX1djfX)
+
+90-second walkthrough — the corpus directory, the auditor running over
+six demo documents (several intentionally polluted), the severity
+rollup with one critical PEM-block finding plus high-severity
+credential and CUI findings, the Splunk-ingestible JSON, and the
+pytest suite. Click the cast above to play, or run it yourself:
+
+```bash
+cd 03-rag-security-auditor
+./demo.sh
+```
+
 > **Engineering write-up:** [`WRITEUP.md`](./WRITEUP.md) — the why
 > behind every design decision. Why static corpus scanning vs. live
 > RAG probing, why these four scanner classes, the false-positive

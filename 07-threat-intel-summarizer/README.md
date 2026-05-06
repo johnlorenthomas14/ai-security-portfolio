@@ -21,6 +21,23 @@ no-API-key operation, a citation verifier with positive and negative
 test paths, a 14-test pytest suite, and a CI job that runs the full
 pipeline offline and asserts zero hallucinated citations.
 
+## Demo
+
+[![asciicast](https://asciinema.org/a/3ZcGr9bfaIBTyJRa.svg)](https://asciinema.org/a/3ZcGr9bfaIBTyJRa)
+
+90-second walkthrough — the shipped STIX bundles, a bundle's object
+types, the summarizer running offline with the stub client (zero
+hallucinations across 13 citations on both bundles), the generated
+analyst brief with every claim cited to a real STIX object ID, the
+emitted Splunk notable events with `linked_to` cross-references derived
+from STIX relationships, the citation audit, and the pytest suite.
+Click the cast above to play, or run it yourself:
+
+```bash
+cd 07-threat-intel-summarizer
+./demo.sh
+```
+
 ## Threat model
 
 | | |

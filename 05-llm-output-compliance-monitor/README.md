@@ -19,6 +19,22 @@ end-to-end pytest coverage including audit-chain integrity verification,
 and a CI job that replays the full sample corpus through the monitor and
 verifies the audit chain on every push.
 
+## Demo
+
+[![asciicast](https://asciinema.org/a/pJJtRvsZFHWFD8OE.svg)](https://asciinema.org/a/pJJtRvsZFHWFD8OE)
+
+90-second walkthrough — the shipped good/bad corpora, the monitor
+replaying both (`0/3/8` on the bad corpus, `8/0/0` on the good corpus),
+the hash-chained audit log validation across all entries, and the
+chain-binding visible in the audit JSON itself (each entry's `prev_hash`
+tying to the previous entry's `hash`). Click the cast above to play,
+or run it yourself:
+
+```bash
+cd 05-llm-output-compliance-monitor
+./demo.sh
+```
+
 ## Threat model
 
 | | |

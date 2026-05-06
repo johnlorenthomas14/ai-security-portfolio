@@ -47,8 +47,8 @@
         "recommended_action": "Human analyst review of the notable's payload.",
         "severity": "high"
       },
-      "started_at": "2026-05-05T15:55:23.187880+00:00",
-      "completed_at": "2026-05-05T15:55:23.188105+00:00",
+      "started_at": "2026-05-06T17:51:15.813678+00:00",
+      "completed_at": "2026-05-06T17:51:15.813972+00:00",
       "error": null
     },
     {
@@ -114,8 +114,8 @@
         "recommended_action": "Close as false positive"
       },
       "final_escalation": {},
-      "started_at": "2026-05-05T15:55:23.188309+00:00",
-      "completed_at": "2026-05-05T15:55:23.188529+00:00",
+      "started_at": "2026-05-06T17:51:15.814674+00:00",
+      "completed_at": "2026-05-06T17:51:15.815076+00:00",
       "error": null
     },
     {
@@ -258,8 +258,8 @@
         "recommended_action": "Block source IP / domain at perimeter; review user session for downstream actions; rotate any credentials the user could have reached.",
         "severity": "high"
       },
-      "started_at": "2026-05-05T15:55:23.188676+00:00",
-      "completed_at": "2026-05-05T15:55:23.189190+00:00",
+      "started_at": "2026-05-06T17:51:15.815389+00:00",
+      "completed_at": "2026-05-06T17:51:15.817042+00:00",
       "error": null
     }
   ]

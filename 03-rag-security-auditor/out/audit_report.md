@@ -1,7 +1,7 @@
 # RAG Pipeline Security Audit — Corpus Findings
 
 **Corpus:** `/Users/johnthomas/Documents/Claude/ai-security-portfolio/03-rag-security-auditor/corpus/demo`  
-**Run time:** 2026-04-30T19:42:41.149841+00:00  
+**Run time:** 2026-05-06T17:43:40.331340+00:00  
 **Documents scanned:** 6  
 **Findings:** 19
 

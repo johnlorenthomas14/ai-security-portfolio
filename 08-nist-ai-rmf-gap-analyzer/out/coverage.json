@@ -1,6 +1,6 @@
 {
   "run": {
-    "run_time": "2026-05-02T20:12:25.644531+00:00",
+    "run_time": "2026-05-06T17:50:15.570890+00:00",
     "total_subcategories": 35,
     "total_covered": 11,
     "overall_pct": 0.3143
@@ -64,7 +64,7 @@
       "priority": "high",
       "covered": true,
       "n_evidence_items": 3,
-      "total_findings": 5,
+      "total_findings": 9,
       "contributing_projects": [
         "03-rag-security-auditor",
         "04-siem-correlation-generator",
@@ -91,8 +91,8 @@
           "subcategory_id": "GOVERN 1.3",
           "project": "05-llm-output-compliance-monitor",
           "source": "05-llm-output-compliance-monitor/out/audit.jsonl",
-          "description": "2 finding(s) tagged GOVERN 1.3 from 05-llm-output-compliance-monitor",
-          "finding_count": 2,
+          "description": "6 finding(s) tagged GOVERN 1.3 from 05-llm-output-compliance-monitor",
+          "finding_count": 6,
           "severity": "high"
         }
       ]
@@ -117,7 +117,7 @@
       "priority": "high",
       "covered": true,
       "n_evidence_items": 2,
-      "total_findings": 20,
+      "total_findings": 58,
       "contributing_projects": [
         "01-prompt-injection-pipeline",
         "05-llm-output-compliance-monitor"
@@ -135,8 +135,8 @@
           "subcategory_id": "GOVERN 1.5",
           "project": "05-llm-output-compliance-monitor",
           "source": "05-llm-output-compliance-monitor/out/audit.jsonl",
-          "description": "19 hash-chained audit entries \u2014 continuous monitoring evidence",
-          "finding_count": 19,
+          "description": "57 hash-chained audit entries \u2014 continuous monitoring evidence",
+          "finding_count": 57,
           "severity": "informational"
         }
       ]
@@ -347,7 +347,7 @@
       "priority": "medium",
       "covered": true,
       "n_evidence_items": 1,
-      "total_findings": 19,
+      "total_findings": 57,
       "contributing_projects": [
         "05-llm-output-compliance-monitor"
       ],
@@ -356,8 +356,8 @@
           "subcategory_id": "MANAGE 4.3",
           "project": "05-llm-output-compliance-monitor",
           "source": "05-llm-output-compliance-monitor/out/audit.jsonl",
-          "description": "19 audit entries documenting compliance-monitor decisions",
-          "finding_count": 19,
+          "description": "57 audit entries documenting compliance-monitor decisions",
+          "finding_count": 57,
           "severity": "informational"
         }
       ]
@@ -485,7 +485,7 @@
       "priority": "high",
       "covered": true,
       "n_evidence_items": 4,
-      "total_findings": 27,
+      "total_findings": 43,
       "contributing_projects": [
         "02-ai-red-team-framework",
         "03-rag-security-auditor",
@@ -521,8 +521,8 @@
           "subcategory_id": "MEASURE 2.10",
           "project": "05-llm-output-compliance-monitor",
           "source": "05-llm-output-compliance-monitor/out/audit.jsonl",
-          "description": "8 finding(s) tagged MEASURE 2.10 from 05-llm-output-compliance-monitor",
-          "finding_count": 8,
+          "description": "24 finding(s) tagged MEASURE 2.10 from 05-llm-output-compliance-monitor",
+          "finding_count": 24,
           "severity": "critical"
         }
       ]
@@ -559,7 +559,7 @@
       "priority": "high",
       "covered": true,
       "n_evidence_items": 3,
-      "total_findings": 10,
+      "total_findings": 18,
       "contributing_projects": [
         "02-ai-red-team-framework",
         "04-siem-correlation-generator",
@@ -586,8 +586,8 @@
           "subcategory_id": "MEASURE 2.6",
           "project": "05-llm-output-compliance-monitor",
           "source": "05-llm-output-compliance-monitor/out/audit.jsonl",
-          "description": "4 finding(s) tagged MEASURE 2.6 from 05-llm-output-compliance-monitor",
-          "finding_count": 4,
+          "description": "12 finding(s) tagged MEASURE 2.6 from 05-llm-output-compliance-monitor",
+          "finding_count": 12,
           "severity": "critical"
         }
       ]

@@ -1,6 +1,6 @@
 {
   "run": {
-    "run_time": "2026-04-30T19:42:41.149841+00:00",
+    "run_time": "2026-05-06T17:43:40.331340+00:00",
     "corpus_root": "/Users/johnthomas/Documents/Claude/ai-security-portfolio/03-rag-security-auditor/corpus/demo",
     "summary": {
       "n_documents": 6,
@@ -54,7 +54,7 @@
       "cim_eventtype": "ai_rag_finding",
       "signature": "rag_security_auditor",
       "event_severity": "medium",
-      "event_time": "2026-04-30T19:42:41.144229+00:00"
+      "event_time": "2026-05-06T17:43:40.325495+00:00"
     },
     {
       "finding_id": "RAG-INJ-02-poisoned-faq.md-006",
@@ -74,7 +74,7 @@
       "cim_eventtype": "ai_rag_finding",
       "signature": "rag_security_auditor",
       "event_severity": "high",
-      "event_time": "2026-04-30T19:42:41.145308+00:00"
+      "event_time": "2026-05-06T17:43:40.326797+00:00"
     },
     {
       "finding_id": "RAG-PII-email-03-customer-feedback.md-L6",
@@ -94,7 +94,7 @@
       "cim_eventtype": "ai_rag_finding",
       "signature": "rag_security_auditor",
       "event_severity": "medium",
-      "event_time": "2026-04-30T19:42:41.146494+00:00"
+      "event_time": "2026-05-06T17:43:40.327969+00:00"
     },
     {
       "finding_id": "RAG-PII-phone-03-customer-feedback.md-L6",
@@ -114,7 +114,7 @@
       "cim_eventtype": "ai_rag_finding",
       "signature": "rag_security_auditor",
       "event_severity": "low",
-      "event_time": "2026-04-30T19:42:41.146499+00:00"
+      "event_time": "2026-05-06T17:43:40.327973+00:00"
     },
     {
       "finding_id": "RAG-PII-email-03-customer-feedback.md-L11",
@@ -134,7 +134,7 @@
       "cim_eventtype": "ai_rag_finding",
       "signature": "rag_security_auditor",
       "event_severity": "medium",
-      "event_time": "2026-04-30T19:42:41.146502+00:00"
+      "event_time": "2026-05-06T17:43:40.327976+00:00"
     },
     {
       "finding_id": "RAG-PII-credit_card-03-customer-feedback.md-L14",
@@ -154,7 +154,7 @@
       "cim_eventtype": "ai_rag_finding",
       "signature": "rag_security_auditor",
       "event_severity": "high",
-      "event_time": "2026-04-30T19:42:41.146505+00:00"
+      "event_time": "2026-05-06T17:43:40.327979+00:00"
     },
     {
       "finding_id": "RAG-PII-ssn-03-customer-feedback.md-L26",
@@ -174,7 +174,7 @@
       "cim_eventtype": "ai_rag_finding",
       "signature": "rag_security_auditor",
       "event_severity": "high",
-      "event_time": "2026-04-30T19:42:41.146508+00:00"
+      "event_time": "2026-05-06T17:43:40.327982+00:00"
     },
     {
       "finding_id": "RAG-INJ-04-dev-runbook.md-012",
@@ -194,7 +194,7 @@
       "cim_eventtype": "ai_rag_finding",
       "signature": "rag_security_auditor",
       "event_severity": "medium",
-      "event_time": "2026-04-30T19:42:41.147236+00:00"
+      "event_time": "2026-05-06T17:43:40.328714+00:00"
     },
     {
       "finding_id": "RAG-SEC-private_key_pem-04-dev-runbook.md-L33",
@@ -214,7 +214,7 @@
       "cim_eventtype": "ai_rag_finding",
       "signature": "rag_security_auditor",
       "event_severity": "critical",
-      "event_time": "2026-04-30T19:42:41.147728+00:00"
+      "event_time": "2026-05-06T17:43:40.329208+00:00"
     },
     {
       "finding_id": "RAG-SEC-aws_access_key-04-dev-runbook.md-L8",
@@ -234,7 +234,7 @@
       "cim_eventtype": "ai_rag_finding",
       "signature": "rag_security_auditor",
       "event_severity": "critical",
-      "event_time": "2026-04-30T19:42:41.147733+00:00"
+      "event_time": "2026-05-06T17:43:40.329212+00:00"
     },
     {
       "finding_id": "RAG-SEC-env_var_credential-04-dev-runbook.md-L8",
@@ -254,7 +254,7 @@
       "cim_eventtype": "ai_rag_finding",
       "signature": "rag_security_auditor",
       "event_severity": "high",
-      "event_time": "2026-04-30T19:42:41.147736+00:00"
+      "event_time": "2026-05-06T17:43:40.329214+00:00"
     },
     {
       "finding_id": "RAG-SEC-env_var_credential-04-dev-runbook.md-L9",
@@ -274,7 +274,7 @@
       "cim_eventtype": "ai_rag_finding",
       "signature": "rag_security_auditor",
       "event_severity": "high",
-      "event_time": "2026-04-30T19:42:41.147738+00:00"
+      "event_time": "2026-05-06T17:43:40.329217+00:00"
     },
     {
       "finding_id": "RAG-SEC-github_token-04-dev-runbook.md-L17",
@@ -294,7 +294,7 @@
       "cim_eventtype": "ai_rag_finding",
       "signature": "rag_security_auditor",
       "event_severity": "high",
-      "event_time": "2026-04-30T19:42:41.147741+00:00"
+      "event_time": "2026-05-06T17:43:40.329224+00:00"
     },
     {
       "finding_id": "RAG-SEC-env_var_credential-04-dev-runbook.md-L17",
@@ -314,7 +314,7 @@
       "cim_eventtype": "ai_rag_finding",
       "signature": "rag_security_auditor",
       "event_severity": "high",
-      "event_time": "2026-04-30T19:42:41.147744+00:00"
+      "event_time": "2026-05-06T17:43:40.329227+00:00"
     },
     {
       "finding_id": "RAG-SEC-anthropic_api_key-04-dev-runbook.md-L25",
@@ -334,7 +334,7 @@
       "cim_eventtype": "ai_rag_finding",
       "signature": "rag_security_auditor",
       "event_severity": "high",
-      "event_time": "2026-04-30T19:42:41.147748+00:00"
+      "event_time": "2026-05-06T17:43:40.329231+00:00"
     },
     {
       "finding_id": "RAG-SEC-env_var_credential-04-dev-runbook.md-L25",
@@ -354,7 +354,7 @@
       "cim_eventtype": "ai_rag_finding",
       "signature": "rag_security_auditor",
       "event_severity": "high",
-      "event_time": "2026-04-30T19:42:41.147750+00:00"
+      "event_time": "2026-05-06T17:43:40.329234+00:00"
     },
     {
       "finding_id": "RAG-SEC-env_var_credential-04-dev-runbook.md-L42",
@@ -374,7 +374,7 @@
       "cim_eventtype": "ai_rag_finding",
       "signature": "rag_security_auditor",
       "event_severity": "high",
-      "event_time": "2026-04-30T19:42:41.147753+00:00"
+      "event_time": "2026-05-06T17:43:40.329236+00:00"
     },
     {
       "finding_id": "RAG-CLS-secret-04-dev-runbook.md",
@@ -394,7 +394,7 @@
       "cim_eventtype": "ai_rag_finding",
       "signature": "rag_security_auditor",
       "event_severity": "critical",
-      "event_time": "2026-04-30T19:42:41.147968+00:00"
+      "event_time": "2026-05-06T17:43:40.329446+00:00"
     },
     {
       "finding_id": "RAG-CLS-cui-05-cui-program-notes.md",
@@ -414,7 +414,7 @@
       "cim_eventtype": "ai_rag_finding",
       "signature": "rag_security_auditor",
       "event_severity": "high",
-      "event_time": "2026-04-30T19:42:41.148641+00:00"
+      "event_time": "2026-05-06T17:43:40.330119+00:00"
     }
   ]
 }

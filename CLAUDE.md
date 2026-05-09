@@ -65,6 +65,13 @@ re-asking.
    Splunk notables; citation verifier rejects hallucinated references.
 8. **NIST AI RMF Compliance Gap Analyzer** — capstone; reads Projects 1-7's
    outputs and produces continuous-monitoring evidence + gap report.
+**Cross-cutting:** `nemo_guardrails/` — NVIDIA NeMo Guardrails app
+(Colang flows + Python actions). Wired as opt-in third detection layer
+in Project 1 (`use_nemo_guardrails=True` on DetectorConfig) and as
+opt-in fifth output filter in Project 5 (`include_nemo_guardrails=True`
+on OutputMonitor). Default OFF — existing F1 = 1.000 eval and CI
+corpus replay assertions remain unchanged.
+
 9. **Autonomous SOC Analyst Agent** — agentic tool-use loop with six analyst
    tools, defended at the input layer by Project 1; 8-case eval suite at
    100% pass rate; CI-gated at 75% pass-rate floor.

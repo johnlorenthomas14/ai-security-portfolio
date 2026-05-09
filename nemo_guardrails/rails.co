@@ -1,0 +1,68 @@
+# Colang rail flows for the AI Security Portfolio NeMo Guardrails app.
+#
+# Each flow corresponds to one rail registered in config.yml. When
+# the rail fires, the flow stops conversation processing and produces
+# a refusal — analogous to BLOCK in Project 5's monitor verdict ladder.
+#
+# All rails delegate the detection to a Python action defined in
+# actions.py. The action returns a boolean (True = unsafe, False = safe)
+# along with a reason string for audit purposes.
+
+# ---------------------------------------------------------------------------
+# Input rails — checked against the user's latest message before any LLM
+# generation runs. Same shape as Project 1's input-layer detection.
+# ---------------------------------------------------------------------------
+
+define flow check_prompt_injection
+  $result = execute pi_detect_action
+  if $result.is_unsafe
+    bot refuse_input_injection
+    stop
+
+define flow check_system_prompt_leak
+  $result = execute system_prompt_leak_action
+  if $result.is_unsafe
+    bot refuse_input_leak_attempt
+    stop
+
+# ---------------------------------------------------------------------------
+# Output rails — checked against the LLM's generated response before it
+# is returned to the caller. Same shape as Project 5's output-layer filters.
+# ---------------------------------------------------------------------------
+
+define flow check_secret_leak
+  $result = execute secrets_filter_action
+  if $result.is_unsafe
+    bot refuse_output_secret
+    stop
+
+define flow check_classification_spillage
+  $result = execute classification_filter_action
+  if $result.is_unsafe
+    bot refuse_output_classification
+    stop
+
+define flow check_jailbreak_acknowledgement
+  $result = execute jailbreak_marker_action
+  if $result.is_unsafe
+    bot refuse_output_jailbreak
+    stop
+
+# ---------------------------------------------------------------------------
+# Refusal messages — short, neutral, do not echo the offending content.
+# ---------------------------------------------------------------------------
+
+define bot refuse_input_injection
+  "I can't help with that request because it appears to contain instructions that would override system policy."
+
+define bot refuse_input_leak_attempt
+  "I can't share or discuss the system instructions guiding this conversation."
+
+define bot refuse_output_secret
+  "The generated response was withheld because it contained credential material that must not be disclosed."
+
+define bot refuse_output_classification
+  "The generated response was withheld because it referenced controlled-handling material (CUI / classified / ITAR / PHI) that must not be disclosed in this channel."
+
+define bot refuse_output_jailbreak
+  "The generated response was withheld because it contained markers indicating the model accepted a prohibited persona or role."

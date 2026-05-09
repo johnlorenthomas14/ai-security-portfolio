@@ -19,15 +19,21 @@ maps to recognized control frameworks (MITRE ATLAS, OWASP LLM Top 10
 
 | # | Project | One-line | Status |
 |---|---------|----------|--------|
-| 1 | [LLM Prompt Injection Detection Pipeline](./01-prompt-injection-pipeline) | Hybrid heuristic + Claude-judge detector at the LLM input layer. ATLAS-tagged verdicts forwarded to Splunk ES; F1 = 1.000 on shipped eval with CI regression floor. | **Working MVP** |
+| 1 | [LLM Prompt Injection Detection Pipeline](./01-prompt-injection-pipeline) | Hybrid heuristic + Claude-judge detector at the LLM input layer with optional NVIDIA NeMo Guardrails third layer. ATLAS-tagged verdicts forwarded to Splunk ES; F1 = 1.000 on shipped eval with CI regression floor. | **Working MVP** |
 | 2 | [AI Red-Team Automation Framework](./02-ai-red-team-framework) | Probes any LLM target against OWASP LLM Top 10; three-layer scorer reuses Project 1's detector. JSON findings + AI-RMF Markdown evidence. | **Working MVP** |
 | 3 | [RAG Pipeline Security Auditor](./03-rag-security-auditor) | Static corpus scanner — indirect-injection, PII, credentials, sensitivity markers caught at ingestion before they reach a production LLM. | **Working MVP** |
 | 4 | [SIEM Correlation Rule Generator for AI Workloads](./04-siem-correlation-generator) | One canonical YAML rule → four SIEM-native outputs (Splunk ES correlation searches, Sigma rules, Cortex XSIAM XQL, NVIDIA Morpheus pipeline configs). Auto-generated AI-RMF coverage map. | **Working MVP** |
-| 5 | [LLM Output Safety & Compliance Monitor](./05-llm-output-compliance-monitor) | Runtime output guardrail with PII / secrets / classification / policy filters. Hash-chained, tamper-evident audit log — the FedRAMP-flavored integrity-evidence pattern. | **Working MVP** |
+| 5 | [LLM Output Safety & Compliance Monitor](./05-llm-output-compliance-monitor) | Runtime output guardrail with PII / secrets / classification / policy filters plus optional NVIDIA NeMo Guardrails fifth filter. Hash-chained, tamper-evident audit log — the FedRAMP-flavored integrity-evidence pattern. | **Working MVP** |
 | 6 | [AI Model Supply Chain Risk Scanner](./06-model-supply-chain-scanner) | Pickle-opcode disassembly without execution + provenance + risky-deps scan of model artifacts; CycloneDX 1.5 SBOM fragment output. | **Working MVP** |
 | 7 | [Adaptive Threat Intelligence Summarizer](./07-threat-intel-summarizer) | STIX 2.1 → cited analyst briefs + Splunk notables. Citation verifier rejects hallucinated references — every claim Claude writes is bound to a real bundle object ID. | **Working MVP** |
 | 8 | [NIST AI RMF Compliance Gap Analyzer](./08-nist-ai-rmf-gap-analyzer) | Reads outputs from Projects 1–7, maps each finding to its AI RMF subcategory, produces continuous-monitoring evidence + gap report. The Qmulos Q-Compliance / Q-Audit pattern, applied to AI governance. | **Working MVP** |
 | 9 | [Autonomous SOC Analyst Agent](./09-autonomous-soc-analyst) | Agentic tool-use loop with six analyst tools, defended at the input layer by Project 1's detector. 8-case eval suite at 100% pass rate, CI-gated at 75% floor. | **Working MVP** |
+
+**Cross-cutting layer:** [`nemo_guardrails/`](./nemo_guardrails) — an
+NVIDIA NeMo Guardrails app (Colang flows + Python actions) wired as
+an opt-in third detection layer in Project 1 and an opt-in fifth
+output filter in Project 5. Demonstrates programmable AI-safety
+policy as a peer to the imperative-detector pattern.
 
 ## The closed-loop pipeline
 

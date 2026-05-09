@@ -10,6 +10,7 @@ from .pii_filter import PIIFilter
 from .secrets_filter import SecretsFilter
 from .policy_filter import PolicyFilter
 from .classification_filter import ClassificationFilter
+from .nemo_guardrails_filter import NeMoGuardrailsFilter
 
 __all__ = [
     "Action",
@@ -20,4 +21,5 @@ __all__ = [
     "SecretsFilter",
     "PolicyFilter",
     "ClassificationFilter",
+    "NeMoGuardrailsFilter",
 ]

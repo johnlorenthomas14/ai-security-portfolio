@@ -202,6 +202,11 @@ class DetectorConfig:
     # Threshold: heuristic confidence at/above which we short-circuit to "malicious"
     # without consulting the LLM (saves tokens on obvious cases).
     heuristic_short_circuit: float = 0.85
+    # NVIDIA NeMo Guardrails — optional third detection layer.
+    # Default OFF so the existing F1 = 1.000 eval is unchanged. When enabled,
+    # consults the Colang policy at <portfolio_root>/nemo_guardrails/ and
+    # treats its verdict as a deterministic peer to the heuristic layer.
+    use_nemo_guardrails: bool = False
 
 
 class PromptInjectionDetector:
@@ -246,12 +251,21 @@ class PromptInjectionDetector:
             self._emit_event(truncated, verdict)
             return verdict
 
+        # Optionally consult NeMo Guardrails as a third deterministic layer.
+        # Only consulted when heuristic doesn't short-circuit — same gating as
+        # the LLM judge below, so Guardrails is purely an ambiguous-case helper.
+        guardrails: dict[str, Any] | None = None
+        if self.config.use_nemo_guardrails:
+            guardrails = self._guardrails_check(truncated)
+
         # Optionally consult the LLM judge.
         judge: dict[str, Any] | None = None
         if self.config.use_llm_judge:
             judge = self._llm_judge(truncated)
 
-        verdict_label, confidence, rationale = self._combine(h_conf, signals, judge)
+        verdict_label, confidence, rationale = self._combine(
+            h_conf, signals, judge, guardrails
+        )
 
         result = self._build_result(
             verdict=verdict_label,
@@ -260,6 +274,7 @@ class PromptInjectionDetector:
             atlas=atlas,
             rationale=rationale,
             judge_used=judge is not None,
+            guardrails_used=guardrails is not None,
         )
         self._emit_event(truncated, result)
         return result
@@ -274,6 +289,44 @@ class PromptInjectionDetector:
 
         self._client = Anthropic()
         return self._client
+
+    def _guardrails_check(self, text: str) -> dict[str, Any] | None:
+        """Call the NeMo Guardrails action layer. On any failure, return None.
+
+        The Guardrails app at ``<portfolio_root>/nemo_guardrails/`` exposes a
+        synchronous ``check_input(text)`` helper that runs both input rails
+        (prompt-injection patterns + system-prompt-leak attempts) without
+        requiring a Guardrails runtime or LLM call. We import lazily so the
+        existing heuristic-only path doesn't pay an import cost.
+
+        Returns a dict shaped ``{"is_unsafe": bool, "reason": str,
+        "matched_pattern": str | None}`` for ``_combine`` to consume.
+        """
+        try:
+            from pathlib import Path
+            import sys as _sys
+
+            # Locate the nemo_guardrails directory at the portfolio root —
+            # Project 1's detector lives one directory deeper.
+            nemo_dir = Path(__file__).resolve().parent.parent / "nemo_guardrails"
+            if str(nemo_dir) not in _sys.path:
+                _sys.path.insert(0, str(nemo_dir))
+            from actions import check_input  # type: ignore[import-not-found]
+        except Exception as exc:  # noqa: BLE001
+            logger.warning("NeMo Guardrails layer unavailable (import failed): %s", exc)
+            return None
+
+        try:
+            result = check_input(text)
+        except Exception as exc:  # noqa: BLE001
+            logger.warning("NeMo Guardrails check_input raised: %s", exc)
+            return None
+
+        return {
+            "is_unsafe": bool(result.is_unsafe),
+            "reason": str(result.reason),
+            "matched_pattern": result.matched_pattern,
+        }
 
     def _llm_judge(self, text: str) -> dict[str, Any] | None:
         """Call Claude. On any failure, return None and log; never raise."""
@@ -337,8 +390,52 @@ class PromptInjectionDetector:
         h_conf: float,
         signals: list[str],
         judge: dict[str, Any] | None,
+        guardrails: dict[str, Any] | None = None,
     ) -> tuple[str, float, str]:
-        """Fuse heuristic confidence with optional LLM judge into a final verdict."""
+        """Fuse heuristic, NeMo Guardrails, and LLM-judge signals into a verdict.
+
+        Asymmetry rules (same property the two-layer combiner enforces):
+          - If heuristic fired, verdict is at least suspicious — the LLM
+            judge can never downgrade to benign.
+          - If NeMo Guardrails fired, verdict is at least suspicious for
+            the same reason — Guardrails is a deterministic peer to the
+            heuristic layer.
+          - If two deterministic layers agree (heuristic + Guardrails),
+            verdict is malicious with combined confidence.
+        """
+        h_any_fired = h_conf > 0.0           # any heuristic rule fired at all
+        g_fired = bool(guardrails and guardrails.get("is_unsafe"))
+
+        # Two independent deterministic layers fired → malicious. The bar is
+        # *any* heuristic rule plus Guardrails, not strict h_conf >= 0.5,
+        # because two independent suspicion sources agreeing is stronger
+        # evidence than the strict-threshold of either alone.
+        if h_any_fired and g_fired:
+            confidence = max(h_conf, 0.85)
+            reason = (
+                f"Heuristic + NeMo Guardrails agreement "
+                f"({len(signals)} rule(s); guardrails: {guardrails['reason']})"
+            )
+            return "malicious", confidence, reason
+
+        # NeMo Guardrails alone — at least suspicious. Promotes to malicious
+        # if the LLM judge also says malicious.
+        if g_fired:
+            if judge and judge["verdict"] == "malicious":
+                return (
+                    "malicious",
+                    max(judge["confidence"], 0.85),
+                    f"NeMo Guardrails + judge: {judge['rationale']}",
+                )
+            return (
+                "suspicious",
+                0.85,
+                f"NeMo Guardrails: {guardrails['reason']}",
+            )
+
+        # ---- Below: Guardrails did not fire (or wasn't consulted). Fall
+        # through to the original two-layer logic so behavior with
+        # use_nemo_guardrails=False matches the pre-G2 detector exactly.
         if judge is None:
             if h_conf >= 0.5:
                 return "malicious", h_conf, f"Heuristic-only: {len(signals)} rule(s) fired."
@@ -346,8 +443,6 @@ class PromptInjectionDetector:
                 return "suspicious", h_conf, f"Heuristic-only: {len(signals)} rule(s) fired."
             return "benign", 0.0, "No heuristic rules fired; LLM judge unavailable."
 
-        # Both signals available. Average with heuristic floor: if heuristics fired,
-        # we never downgrade below "suspicious".
         v_judge = judge["verdict"]
         c_judge = judge["confidence"]
         rationale = judge["rationale"]
@@ -374,6 +469,7 @@ class PromptInjectionDetector:
         atlas: list[str],
         rationale: str,
         judge_used: bool,
+        guardrails_used: bool = False,
     ) -> dict[str, Any]:
         return {
             "verdict": verdict,
@@ -382,8 +478,13 @@ class PromptInjectionDetector:
             "atlas_techniques": atlas,
             "model_rationale": rationale,
             "judge_used": judge_used,
+            "guardrails_used": guardrails_used,
         }
 
+    # Short-circuit / no-judge paths build results without going through the
+    # combiner, so they need to surface guardrails_used too. The detect()
+    # method handles those paths directly — short-circuit is heuristic-only,
+    # so guardrails_used is False by definition.
     @staticmethod
     def _emit_event(text: str, verdict: dict[str, Any]) -> None:
         """Emit a structured JSON line on the aisec.prompt_injection logger.
@@ -400,6 +501,7 @@ class PromptInjectionDetector:
             "signals": verdict["signals"],
             "atlas_techniques": verdict["atlas_techniques"],
             "judge_used": verdict["judge_used"],
+            "guardrails_used": verdict.get("guardrails_used", False),
             # Truncate input for log economy; full text is the caller's responsibility.
             "src_input_excerpt": text[:240],
         }

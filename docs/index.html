@@ -318,12 +318,13 @@
         <span class="num">01 / mvp</span>
         <span class="status mvp">working mvp · F1 = 1.000</span>
         <h3>LLM Prompt Injection Detection Pipeline</h3>
-        <p>Hybrid heuristic + Claude-judge detector. Verdicts forward to Splunk ES as notable events. Ships with eval set, pytest, CI, asciicast demo, and a 2,400-word engineering <a href="https://github.com/johnlorenthomas14/ai-security-portfolio/blob/main/01-prompt-injection-pipeline/WRITEUP.md">write-up</a>.</p>
+        <p>Hybrid heuristic + Claude-judge detector with optional NVIDIA NeMo Guardrails third layer. Verdicts forward to Splunk ES as notable events. Ships with eval set, pytest, CI, asciicast demo, and a 2,400-word engineering <a href="https://github.com/johnlorenthomas14/ai-security-portfolio/blob/main/01-prompt-injection-pipeline/WRITEUP.md">write-up</a>.</p>
         <div class="tags">
           <span class="tag atlas">AML.T0051</span>
           <span class="tag atlas">AML.T0054</span>
           <span class="tag">Splunk HEC</span>
           <span class="tag">Anthropic SDK</span>
+          <span class="tag">NVIDIA NeMo Guardrails</span>
         </div>
       </a>
       <a class="card" href="https://github.com/johnlorenthomas14/ai-security-portfolio/tree/main/02-ai-red-team-framework">
@@ -364,11 +365,12 @@
         <span class="num">05 / mvp</span>
         <span class="status mvp">working mvp</span>
         <h3>LLM Output Compliance Monitor</h3>
-        <p>Runtime output guardrail with PII / secrets / classification / policy filters. Every decision is appended to a hash-chained, tamper-evident audit log — the FedRAMP-flavored integrity-evidence pattern.</p>
+        <p>Runtime output guardrail with PII / secrets / classification / policy filters plus optional NVIDIA NeMo Guardrails fifth filter. Every decision is appended to a hash-chained, tamper-evident audit log — the FedRAMP-flavored integrity-evidence pattern.</p>
         <div class="tags">
           <span class="tag">FedRAMP</span>
           <span class="tag">Hash chain</span>
           <span class="tag rmf">AI RMF</span>
+          <span class="tag">NVIDIA NeMo Guardrails</span>
         </div>
       </a>
       <a class="card" href="https://github.com/johnlorenthomas14/ai-security-portfolio/tree/main/06-model-supply-chain-scanner">

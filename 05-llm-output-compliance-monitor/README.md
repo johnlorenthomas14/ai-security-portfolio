@@ -5,6 +5,7 @@
 [![FedRAMP-aware](https://img.shields.io/badge/FedRAMP-aware-blue.svg)](https://www.fedramp.gov/)
 [![NIST AI RMF](https://img.shields.io/badge/NIST%20AI%20RMF-1.0-blue.svg)](https://www.nist.gov/itl/ai-risk-management-framework)
 [![NIST 800-53](https://img.shields.io/badge/NIST%20800--53-AU%20%7C%20SI--12-orange.svg)](https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final)
+[![NVIDIA NeMo Guardrails](https://img.shields.io/badge/NVIDIA-NeMo%20Guardrails-76B900.svg)](../nemo_guardrails/)
 
 > **A runtime output guardrail that inspects every LLM-generated response
 > for PII, secrets, classification-marker spillage, and successful-jailbreak
@@ -184,6 +185,40 @@ if decision.blocked:
     return generic_refusal_to_user()
 return decision.response_out   # may be redacted; safe to return
 ```
+
+## NVIDIA NeMo Guardrails (optional fifth filter)
+
+Pass `include_nemo_guardrails=True` to append the
+[`NeMoGuardrailsFilter`](./filters/nemo_guardrails_filter.py) to the
+default chain. The new filter delegates to the portfolio's NeMo
+Guardrails app at [`../nemo_guardrails/`](../nemo_guardrails/) — same
+secret / classification / jailbreak detection vocabulary, expressed as
+programmable Colang output rails:
+
+```python
+mon = OutputMonitor(
+    audit_log_path="audit.jsonl",
+    include_nemo_guardrails=True,
+)
+# mon.filters now has 5 filters; the 5th is the NeMo Guardrails layer.
+decision = mon.check(llm_response_text)
+# Findings from the new filter carry filter_name="nemo_guardrails"
+# and BLOCK action. They flow into the same hash-chained audit log.
+```
+
+Default is OFF, so existing CI corpus replay assertions and audit-log
+shape are unchanged. When enabled:
+
+- The new filter fires on the same secret / classification /
+  jailbreak vocabulary the four core filters detect (deliberate
+  redundancy — demonstrates layered defense-in-depth).
+- Findings carry `filter_name="nemo_guardrails"`, `action=BLOCK`, and
+  the appropriate OWASP / MITRE ATLAS / NIST AI RMF tags.
+- Decisions flow into the existing hash-chained audit log; chain
+  integrity is preserved across mixed runs.
+- The integration is fail-open: if the action layer can't be
+  imported, the new filter returns no findings and the four core
+  filters proceed unaffected.
 
 The library never raises — filters catch their own exceptions, the
 monitor returns a `pass` for any response that produced no findings, and

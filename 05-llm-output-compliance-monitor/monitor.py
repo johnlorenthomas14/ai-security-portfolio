@@ -30,6 +30,7 @@ from filters import (
     ClassificationFilter,
     Decision,
     Finding,
+    NeMoGuardrailsFilter,
     OutputFilter,
     PIIFilter,
     PolicyFilter,
@@ -38,20 +39,39 @@ from filters import (
 
 
 class OutputMonitor:
-    """Orchestrates filters; records every decision to a hash-chained log."""
+    """Orchestrates filters; records every decision to a hash-chained log.
+
+    The default filter chain is the four MVP filters (PII redact, secrets
+    block, classification block, policy block). Pass
+    ``include_nemo_guardrails=True`` to append the
+    ``NeMoGuardrailsFilter`` — an opt-in fifth filter that delegates to
+    the portfolio's NeMo Guardrails app for the same secret / classification /
+    jailbreak detection vocabulary, expressed as programmable Colang
+    rails. Decisions from this layer flow into the same hash-chained
+    audit log so audit-chain integrity is preserved.
+
+    Passing an explicit ``filters=...`` list overrides both defaults
+    and the include flag — the caller has full control of the chain.
+    """
 
     def __init__(
         self,
         *,
         filters: list[OutputFilter] | None = None,
         audit_log_path: Path | str | None = None,
+        include_nemo_guardrails: bool = False,
     ) -> None:
-        self.filters: list[OutputFilter] = filters or [
-            PIIFilter(),
-            SecretsFilter(),
-            ClassificationFilter(),
-            PolicyFilter(),
-        ]
+        if filters is not None:
+            self.filters: list[OutputFilter] = list(filters)
+        else:
+            self.filters = [
+                PIIFilter(),
+                SecretsFilter(),
+                ClassificationFilter(),
+                PolicyFilter(),
+            ]
+            if include_nemo_guardrails:
+                self.filters.append(NeMoGuardrailsFilter())
         self.audit: HashChainAuditLog | None = (
             HashChainAuditLog(audit_log_path) if audit_log_path else None
         )

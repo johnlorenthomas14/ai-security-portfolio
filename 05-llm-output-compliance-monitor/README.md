@@ -220,6 +220,28 @@ shape are unchanged. When enabled:
   imported, the new filter returns no findings and the four core
   filters proceed unaffected.
 
+### NeMo Guardrails firings in Splunk ES
+
+Because the new filter writes to the same hash-chained audit log as
+the four core filters, a single Splunk ES correlation search can
+break out NeMo Guardrails firings as their own dimension alongside
+the existing PII / secrets / classification / policy filter activity:
+
+```spl
+index=aisec sourcetype="aisec:output_compliance" decision_verdict="block"
+| stats count by app, "findings{}.filter"
+| where 'findings{}.filter'="nemo_guardrails"
+```
+
+That gives a SOC analyst a per-application view of NeMo Guardrails
+firings sitting next to the existing four filters — same index, same
+audit log, same correlation infrastructure. Drop it into a notable-
+event search and a spike in NeMo-only blocks (without parallel firings
+from the imperative filters) is the operational signal that the
+Guardrails layer is catching something the regex chain missed —
+exactly the defense-in-depth payoff the layered architecture is
+designed to surface.
+
 The library never raises — filters catch their own exceptions, the
 monitor returns a `pass` for any response that produced no findings, and
 the audit log appends atomically. Intended for embedding in production
@@ -261,6 +283,13 @@ Spike-on-block-rate alerting is the most operationally useful pattern —
 a sudden cluster of blocks usually indicates either an injection campaign
 underway against the host application or a model regression that started
 producing unsafe content.
+
+When the optional NeMo Guardrails fifth filter is enabled (see above),
+the same audit log carries findings tagged `filter="nemo_guardrails"`
+alongside the four core filters. The two layers can be separated for
+cross-tab analysis with the per-filter SPL pivot in the NeMo Guardrails
+section above — same index, same audit log, same correlation
+infrastructure.
 
 ## What's not in MVP (roadmap)
 

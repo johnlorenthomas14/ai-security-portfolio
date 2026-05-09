@@ -106,29 +106,69 @@ print(check_input('What is the weather forecast for next Tuesday?'))
 #   RailResult(is_unsafe=False, reason='no rule fired', matched_pattern=None)
 ```
 
-For a full Guardrails-runtime smoke test (after G2/G3 land), see
-`tests/test_smoke.py` once the suite is in place.
+## What's covered
 
-## What's covered now (G1)
+- **Action layer** — five rails (two input, three output) backed by
+  self-contained Python actions. Detection vocabulary mirrors Projects 1
+  and 5 so behavior is consistent across the three layers. 25-test
+  pytest suite covers operator-level patterns, benign baselines, and
+  config / Colang flow alignment.
+- **Project 1 wiring** — `DetectorConfig.use_nemo_guardrails` (default
+  False) opts into a third detection layer. When enabled, Guardrails
+  firings feed into the asymmetric verdict combiner alongside the
+  heuristic and judge layers. Heuristic + Guardrails agreement →
+  malicious. Guardrails alone → suspicious floor. 9 integration tests.
+- **Project 5 wiring** — `OutputMonitor(include_nemo_guardrails=True)`
+  appends a fifth filter to the chain. Findings flow into the existing
+  hash-chained audit log with `filter="nemo_guardrails"` so audit-chain
+  integrity is preserved. 13 integration tests.
+- **CI** — Project 1 and Project 5 jobs each include a smoke check
+  exercising the new wiring. Standalone `nemo-guardrails` job runs the
+  25-test action layer on Python 3.11 and 3.12.
+- **Documentation** — Project 1 + Project 5 READMEs explain the opt-in
+  flag and the integration semantics. Root README + landing pages tag
+  both projects with NVIDIA NeMo Guardrails. CLAUDE.md notes the
+  cross-cutting layer.
 
-- Both rail directions configured and wired to Python actions.
-- Action layer is self-contained — no imports from the rest of the
-  portfolio, so this directory is portable.
-- Detection vocabulary mirrors Projects 1 and 5 so behavior is
-  consistent across the three layers.
+## Splunk integration (via Project 5's audit log)
 
-## What's coming (G2 / G3 / G4)
+The G3 wiring sends every Guardrails-blocked output through Project 5's
+hash-chained audit log, so a single Splunk ES correlation search can
+break out NeMo Guardrails firings as their own dimension alongside the
+existing four imperative filters:
 
-- **G2** — Project 1's `PromptInjectionDetector` accepts an optional
-  NeMo Guardrails layer feeding into the asymmetric verdict combiner.
-  Default off so the existing F1 = 1.000 eval is unchanged.
-- **G3** — Project 5's `OutputMonitor` accepts NeMo Guardrails as an
-  additional filter. Decisions flow into the existing hash-chained
-  audit log with `filter="nemo_guardrails"` so audit-chain integrity
-  is preserved.
-- **G4** — Pytest coverage for the action layer, both wirings, and
-  the live `LLMRails.generate_async` path. CI extension. Project 1
-  and Project 5 README updates. Landing page tag.
+```spl
+index=aisec sourcetype="aisec:output_compliance" decision_verdict="block"
+| stats count by app, "findings{}.filter"
+| where 'findings{}.filter'="nemo_guardrails"
+```
+
+A spike in NeMo-only blocks (without parallel firings from the
+imperative filters) is the operational signal that the Guardrails
+layer caught something the regex chain missed — exactly the
+defense-in-depth payoff the layered architecture is designed to
+surface. Same index, same audit log, same correlation infrastructure
+the rest of the portfolio's Splunk integration uses.
+
+## What's not in MVP (roadmap)
+
+- **Live `LLMRails.generate_async` path.** The current integration
+  invokes the action layer directly via the synchronous helpers. A
+  future revision can wire the full Guardrails runtime so input rails
+  fire on real LLM tool-use messages and output rails fire on real
+  generations. The action layer is already shaped to support this —
+  the actions are async-compatible and pull from NeMo Guardrails'
+  context dict.
+- **Self-check rail using a Claude-judge action.** NeMo Guardrails
+  ships with a `self_check_input` rail that calls the LLM to
+  classify the input. Wiring this in would give a dynamic LLM-judge
+  layer in the Guardrails framing, parallel to Project 1's existing
+  Claude-judge layer.
+- **Per-application Colang policy.** Different host applications need
+  different rail sets (medical apps want PHI handling allowed; legal
+  apps want attorney-client privilege allowed). A future revision
+  parameterizes the Colang flows so a deployment can opt into
+  category-specific behavior.
 
 ## Why this matters for the portfolio
 

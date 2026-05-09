@@ -1,10 +1,10 @@
 """SIEM Correlation Rule Generator — CLI entry.
 
 Loads every YAML rule template under `templates/`, runs every generator
-(Splunk ES, Sigma, Cortex XSIAM) over each rule, and writes platform-
-native detection content to `out/<platform>/<rule_id>.<ext>`. Also
-emits a Markdown coverage map showing which rules cover which OWASP /
-ATLAS / AI RMF cells.
+(Splunk ES, Sigma, Cortex XSIAM, NVIDIA Morpheus) over each rule, and
+writes platform-native detection content to ``out/<platform>/<rule_id>.<ext>``.
+Also emits a Markdown coverage map showing which rules cover which
+OWASP / ATLAS / AI RMF cells.
 
 Usage:
     python generator.py
@@ -19,6 +19,7 @@ from pathlib import Path
 
 from rules import (
     CortexXSIAMGenerator,
+    MorpheusGenerator,
     Rule,
     RuleGenerator,
     SigmaGenerator,
@@ -52,7 +53,8 @@ def write_coverage_map(rules: list[Rule], out_dir: Path) -> Path:
     lines.append(
         "Each row shows one canonical rule from the template library. "
         "The same rule produces detection content for Splunk ES, Sigma, "
-        "and Cortex XSIAM — see the per-platform output directories."
+        "Cortex XSIAM, and NVIDIA Morpheus — see the per-platform output "
+        "directories."
     )
     lines.append("")
     lines.append("| Rule ID | Name | Severity | Source event | OWASP | ATLAS | AI RMF |")
@@ -115,6 +117,7 @@ def main(argv: list[str] | None = None) -> int:
         SplunkESGenerator(),
         SigmaGenerator(),
         CortexXSIAMGenerator(),
+        MorpheusGenerator(),
     ]
 
     n = emit_all(rules, generators, out_dir)

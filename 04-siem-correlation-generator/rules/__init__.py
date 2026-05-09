@@ -9,6 +9,7 @@ from .base import Aggregation, Condition, Rule, Response, RuleGenerator, load_ru
 from .splunk_es import SplunkESGenerator
 from .sigma import SigmaGenerator
 from .cortex_xsiam import CortexXSIAMGenerator
+from .morpheus import MorpheusGenerator
 
 __all__ = [
     "Aggregation",
@@ -21,4 +22,5 @@ __all__ = [
     "SplunkESGenerator",
     "SigmaGenerator",
     "CortexXSIAMGenerator",
+    "MorpheusGenerator",
 ]

@@ -55,7 +55,8 @@ re-asking.
 3. **RAG Pipeline Security Auditor** — static corpus scanner with four
    classes (indirect-injection, PII, credentials, sensitivity markers).
 4. **SIEM Correlation Rule Generator for AI Workloads** — one canonical YAML
-   rule → three SIEM-native outputs (Splunk ES, Sigma, Cortex XSIAM XQL).
+   rule → four platform-native outputs (Splunk ES, Sigma, Cortex XSIAM XQL,
+   NVIDIA Morpheus pipeline configs).
 5. **LLM Output Safety & Compliance Monitor** — runtime output guardrail
    with hash-chained tamper-evident audit log (FedRAMP-flavored integrity).
 6. **AI Model Supply Chain Risk Scanner** — pickle-opcode disassembly without

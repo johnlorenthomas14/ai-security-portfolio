@@ -156,7 +156,30 @@ jobs:
           test -d ./out/splunk_es
           test -d ./out/sigma
           test -d ./out/cortex_xsiam
+          test -d ./out/morpheus
           test -f ./out/coverage_map.md
+          # Every Morpheus file must parse as YAML and carry the canonical
+          # pipeline + tags structure.
+          python -c "
+          import yaml, glob
+          for p in sorted(glob.glob('./out/morpheus/*.yaml')):
+              d = yaml.safe_load(open(p).read())
+              assert 'pipeline' in d and 'tags' in d, p
+              assert d['tags']['rule_id'], p
+          print(f'Validated {len(glob.glob(\"./out/morpheus/*.yaml\"))} Morpheus pipeline configs')
+          "
+          # Sample event corpus must be well-formed JSONL.
+          python -c "
+          import json
+          n = 0
+          with open('samples/morpheus_events.jsonl') as f:
+              for line in f:
+                  if line.strip():
+                      json.loads(line)
+                      n += 1
+          assert n >= 8, f'expected at least 8 sample events, got {n}'
+          print(f'Validated {n} sample events in samples/morpheus_events.jsonl')
+          "
 
   output-compliance-monitor:
     name: Project 5 — pytest + corpus replay + audit-chain verify

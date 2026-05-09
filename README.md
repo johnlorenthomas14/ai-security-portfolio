@@ -22,7 +22,7 @@ maps to recognized control frameworks (MITRE ATLAS, OWASP LLM Top 10
 | 1 | [LLM Prompt Injection Detection Pipeline](./01-prompt-injection-pipeline) | Hybrid heuristic + Claude-judge detector at the LLM input layer. ATLAS-tagged verdicts forwarded to Splunk ES; F1 = 1.000 on shipped eval with CI regression floor. | **Working MVP** |
 | 2 | [AI Red-Team Automation Framework](./02-ai-red-team-framework) | Probes any LLM target against OWASP LLM Top 10; three-layer scorer reuses Project 1's detector. JSON findings + AI-RMF Markdown evidence. | **Working MVP** |
 | 3 | [RAG Pipeline Security Auditor](./03-rag-security-auditor) | Static corpus scanner — indirect-injection, PII, credentials, sensitivity markers caught at ingestion before they reach a production LLM. | **Working MVP** |
-| 4 | [SIEM Correlation Rule Generator for AI Workloads](./04-siem-correlation-generator) | One canonical YAML rule → three SIEM-native outputs (Splunk ES correlation searches, Sigma rules, Cortex XSIAM XQL). Auto-generated AI-RMF coverage map. | **Working MVP** |
+| 4 | [SIEM Correlation Rule Generator for AI Workloads](./04-siem-correlation-generator) | One canonical YAML rule → four SIEM-native outputs (Splunk ES correlation searches, Sigma rules, Cortex XSIAM XQL, NVIDIA Morpheus pipeline configs). Auto-generated AI-RMF coverage map. | **Working MVP** |
 | 5 | [LLM Output Safety & Compliance Monitor](./05-llm-output-compliance-monitor) | Runtime output guardrail with PII / secrets / classification / policy filters. Hash-chained, tamper-evident audit log — the FedRAMP-flavored integrity-evidence pattern. | **Working MVP** |
 | 6 | [AI Model Supply Chain Risk Scanner](./06-model-supply-chain-scanner) | Pickle-opcode disassembly without execution + provenance + risky-deps scan of model artifacts; CycloneDX 1.5 SBOM fragment output. | **Working MVP** |
 | 7 | [Adaptive Threat Intelligence Summarizer](./07-threat-intel-summarizer) | STIX 2.1 → cited analyst briefs + Splunk notables. Citation verifier rejects hallucinated references — every claim Claude writes is bound to a real bundle object ID. | **Working MVP** |
@@ -39,7 +39,7 @@ Nine projects across three deployment phases, all sharing an event vocabulary, a
             │ 06 — Model Supply      │         │ 01 — Prompt Injection  │        │ 04 — SIEM Correlation  │
             │      Chain Scanner     │         │      Detection         │        │      Rule Generator    │
             │   (pickle / SBOM)      │         │   (input layer)        │        │   (Splunk + Sigma +    │
-            │                        │         │                        │        │    XSIAM content)      │
+            │                        │         │                        │        │    XSIAM + Morpheus)   │
             ├────────────────────────┤         ├────────────────────────┤        ├────────────────────────┤
             │ 03 — RAG Pipeline      │         │ 05 — Output Safety &   │        │ 07 — Threat-Intel      │
             │      Security Auditor  │   ───►  │      Compliance        │  ───►  │      Summarizer        │
@@ -60,7 +60,7 @@ Nine projects across three deployment phases, all sharing an event vocabulary, a
 
 The compounding interview line, in one paragraph:
 
-> *"Project 6 audits the model artifact pre-deployment. Project 3 audits the corpus pre-retrieval. Project 1 detects injection at runtime. Project 5 guards the output layer with hash-chained tamper-evident audit logs. Project 2 generates the adversarial corpus that keeps Project 1's eval set honest. Project 7 produces citation-verified threat-intel briefs from STIX bundles. Project 4 turns every project's findings into deployable Splunk ES, Sigma, and Cortex XSIAM correlation content. Project 8 reads the whole pipeline's output and produces NIST AI RMF continuous-monitoring evidence. Project 9 is an autonomous SOC analyst agent that defends its own input layer using Project 1 — closed-loop AI-security as defense-in-depth."*
+> *"Project 6 audits the model artifact pre-deployment. Project 3 audits the corpus pre-retrieval. Project 1 detects injection at runtime. Project 5 guards the output layer with hash-chained tamper-evident audit logs. Project 2 generates the adversarial corpus that keeps Project 1's eval set honest. Project 7 produces citation-verified threat-intel briefs from STIX bundles. Project 4 turns every project's findings into deployable Splunk ES, Sigma, Cortex XSIAM, and NVIDIA Morpheus correlation content. Project 8 reads the whole pipeline's output and produces NIST AI RMF continuous-monitoring evidence. Project 9 is an autonomous SOC analyst agent that defends its own input layer using Project 1 — closed-loop AI-security as defense-in-depth."*
 
 ## Engineering write-ups
 
@@ -86,7 +86,7 @@ cd ../02-ai-red-team-framework && pip install -r requirements.txt && python3 run
 # Project 3 — audit the shipped polluted demo corpus
 cd ../03-rag-security-auditor && pip install -r requirements.txt && python3 auditor.py --corpus corpus/demo
 
-# Project 4 — generate detection content for three SIEMs from one canonical rule library
+# Project 4 — generate detection content for four platforms from one canonical rule library
 cd ../04-siem-correlation-generator && pip install -r requirements.txt && python3 generator.py
 
 # Project 5 — replay LLM output samples through the compliance monitor

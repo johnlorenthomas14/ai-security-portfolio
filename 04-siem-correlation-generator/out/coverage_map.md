@@ -1,6 +1,6 @@
 # Detection Coverage Map
 
-Each row shows one canonical rule from the template library. The same rule produces detection content for Splunk ES, Sigma, and Cortex XSIAM — see the per-platform output directories.
+Each row shows one canonical rule from the template library. The same rule produces detection content for Splunk ES, Sigma, Cortex XSIAM, and NVIDIA Morpheus — see the per-platform output directories.
 
 | Rule ID | Name | Severity | Source event | OWASP | ATLAS | AI RMF |
 |---|---|---|---|---|---|---|
